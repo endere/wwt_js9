@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 
 @app.route('/<num>', methods=['GET'])
-def image_return():
+def image_return(num):
     return send_file('saved.png', mimetype='image/png')
 
 
