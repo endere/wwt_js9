@@ -27,7 +27,7 @@ def image_storage():
     print(app.num)
     thing = next(app.num)
     print(thing)
-    # return thing
+    return 'success'
 
 
 if __name__ == '__main__':
