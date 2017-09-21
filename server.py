@@ -2,6 +2,7 @@
 from flask import Flask, request, send_file
 import random
 import base64
+import time
 app = Flask(__name__)
 
 
@@ -24,8 +25,8 @@ def image_storage():
     app.stored_image = open("saved.png", "wb")
     app.stored_image.write(data)
     app.stored_image.close()
-    return str(next(app.num))
-
+    time.sleep(1)
+    return 'success'
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
