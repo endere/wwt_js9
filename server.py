@@ -31,8 +31,8 @@ def image_storage():
 
 
 @app.route('/wtmlreturn', methods=['GET'])
-def wtml_return(num):
+def wtml_return():
     return send_file('images.wtml')
-    
+
 if __name__ == '__main__':
     app.run()
