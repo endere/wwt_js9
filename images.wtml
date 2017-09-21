@@ -28,7 +28,7 @@
          Generic="False" 
          DataSetType="Sky" 
          BandPass="Visible" 
-         Url="https://i.pinimg.com/736x/92/9d/3d/929d3d9f76f406b5ac6020323d2d32dc--pretty-cats-beautiful-cats.jpg" 
+         Url="https://wwt-js9-server.herokuapp.com/1" 
          TileLevels="4" 
          WidthFactor="2" 
          Sparse="True" 
