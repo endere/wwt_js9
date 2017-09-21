@@ -13,7 +13,6 @@ def image_storage():
         app.stored_image.close()
         return 'received'
     elif request.method == 'GET':
-        # return send_file('saved.png', mimetype='image/png')
-        return 'test'
+        return send_file('saved.png', mimetype='image/png')
 if __name__ == '__main__':
     app.run()
