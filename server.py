@@ -30,7 +30,7 @@ def image_storage():
 # @app.route('/wtmlpost', methods=['POST'])
 
 
-@app.route('/wtmlreturn', methods=['GET'])
+@app.route('/images.wtml', methods=['GET'])
 def wtml_return():
     return send_file('images.wtml')
 
