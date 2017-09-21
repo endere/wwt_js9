@@ -24,11 +24,7 @@ def image_storage():
     app.stored_image = open("saved.png", "wb")
     app.stored_image.write(data)
     app.stored_image.close()
-    print(app.num)
-    thing = next(app.num)
-    print(thing)
-    return 'success'
-
+    return str(next(app.num))
 
 if __name__ == '__main__':
     app.run()
