@@ -5,6 +5,14 @@ import base64
 app = Flask(__name__)
 
 
+
+def uniqueid():
+    seed = random.getrandbits(32)
+    while True:
+        yield seed
+        seed += 1
+app.num = uniqueid()
+
 @app.route('/<num>', methods=['GET'])
 def image_return(num):
     return send_file('saved.png', mimetype='image/png')
@@ -18,13 +26,6 @@ def image_storage():
     app.stored_image.close()
     return next(app.num)
 
-def uniqueid():
-    seed = random.getrandbits(32)
-    while True:
-        yield seed
-        seed += 1
-
 
 if __name__ == '__main__':
     app.run()
-    app.num = uniqueid()
