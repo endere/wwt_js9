@@ -1,6 +1,5 @@
 #!/usr/bin/python
 from flask import Flask, request, send_file
-import random
 import base64
 app = Flask(__name__)
 
