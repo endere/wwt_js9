@@ -6,11 +6,13 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
-        # data = base64.b64decode(request.data[22:])
-        # app.stored_image = open("saved.png", "wb")
-        # app.stored_image.write(data)
-        # app.stored_image.close()
-        print(request.data.split(b'&'))
+        split_data = request.data.split(b'&')
+        url_data = base64.b64decode(split_data[0][26:])
+        app.stored_image = open("saved.png", "wb")
+        app.stored_image.write(url_data)
+        app.stored_image.close()
+        print(b'dec is' + split_data[1][4:])
+        print(b'ra is' + split_data[2][3:])
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
