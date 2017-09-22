@@ -11,6 +11,8 @@ def image_storage():
         # app.stored_image.write(data)
         # app.stored_image.close()
         print(request.data)
+        print(request.Dec)
+        print(request.Ra)
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
