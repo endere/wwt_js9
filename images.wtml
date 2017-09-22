@@ -10,7 +10,7 @@
    <Place 
      Name="Stored image" 
      DataSetType="Sky" 
-     RA="15550"
+     RA="10"
      Dec="52"
      Constellation="AND" 
      Classification="Unfiltered" 
