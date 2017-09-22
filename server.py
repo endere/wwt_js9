@@ -10,7 +10,7 @@ def image_storage():
         # app.stored_image = open("saved.png", "wb")
         # app.stored_image.write(data)
         # app.stored_image.close()
-        print(request.data.split('&'))
+        print(request.data.split(b'&'))
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
