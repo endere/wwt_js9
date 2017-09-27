@@ -24,7 +24,7 @@ def wtml_return():
 
 
 @app.route('/images2.wtml', methods=['GET'])
-def wtml_return():
+def second_wtml_return():
     return send_file('images.wtml')
 
 @app.route('/home', methods=['GET'])
@@ -47,7 +47,7 @@ def edit_wtml(dictionary):
                 new.write(' ' * 5 + attribute + '=' + '"' + dictionary[attribute] + '"' + '\n')
             except IndexError:
                 new.write(line)
-                
+
 
 
 if __name__ == '__main__':
