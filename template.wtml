@@ -30,7 +30,7 @@
          BandPass="Visible" 
          Url="http://www.worldwidetelescope.org/wwtweb/GetTile.aspx?q={1},{2},{3},702440959" 
          TileLevels="4" 
-         WidthFactor="2" 
+         WidthFactor="4" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
