@@ -37,7 +37,8 @@ def wwtcdn():
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
-    print(file)
+    if file[0:2] == 'www':
+        return redirect(file)
     return send_file('public/js9-1.12/{}'.format(file))
 
 
