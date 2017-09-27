@@ -24,13 +24,7 @@ def wtml_return():
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
-    try:
         return send_file('public/js9-1.12/WWT.html')
-    except Exception:
-        print('exception found')
-        print('in the try except')
-        print(Exception)
-
 
 @app.route('/wwtcdn', methods=['GET'])
 def wwtcdn():
@@ -43,7 +37,12 @@ def wwtcdn():
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
-    return send_file('public/js9-1.12/{}'.format(file))
+    try:
+        return send_file('public/js9-1.12/{}'.format(file))
+    except Exception:
+        print('exception found')
+        print('here it is')
+        print(Exception)
 
 
 def edit_wtml(dictionary):
