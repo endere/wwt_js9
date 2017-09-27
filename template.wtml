@@ -40,8 +40,8 @@
          CenterY="10" 
          CenterX="10" 
          BottomsUp="False" 
-         OffsetX="0" 
-         OffsetY="0" 
+         OffsetX="-10" 
+         OffsetY="-10" 
          BaseTileLevel="0" 
          BaseDegreesPerTile="20">
  
