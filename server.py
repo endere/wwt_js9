@@ -23,7 +23,7 @@ def wtml_return():
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
-    return app.send_file('public/js9-1.12/WWT.html')
+    return send_file('public/js9-1.12/WWT.html')
 
 
 def edit_wtml(dictionary):
