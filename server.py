@@ -12,7 +12,7 @@ def image_storage():
         app.stored_image = open("saved.png", "wb")
         app.stored_image.write(url_data)
         app.stored_image.close()
-        edit_wtml({'RA': str(split_data[2][3:]), 'Dec': str(split_data[1][4:])})
+        edit_wtml({'RA': split_data[2][3:], 'Dec': split_data[1][4:]})
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
@@ -52,3 +52,4 @@ def edit_wtml(dictionary):
 
 if __name__ == '__main__':
     app.run()
+

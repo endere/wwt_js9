@@ -10,13 +10,13 @@
    <Place 
      Name="Stored image" 
      DataSetType="Sky" 
-     RA="10"
-     Dec="52"
+     RA="b'10456456'"
+     Dec="b'10234'"
      Constellation="AND" 
      Classification="Unfiltered" 
      Magnitude="0" 
      Distance="0" 
-     ZoomLevel="61.76666816142" 
+     ZoomLevel="61" 
      Rotation="0" 
      Angle="0" 
      Opacity="100" 
@@ -29,7 +29,7 @@
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
-         TileLevels="4" 
+         TileLevels="1" 
          WidthFactor="2" 
          Sparse="True" 
          Rotation="0" 
@@ -43,7 +43,7 @@
          OffsetX="-0.0013888889225" 
          OffsetY="-0.0013888889225" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="11.37777805312">
+         BaseDegreesPerTile="0.1">
  
          <Credits>
          </Credits>
