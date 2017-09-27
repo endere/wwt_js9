@@ -18,6 +18,7 @@ def image_storage():
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
+    print('returning template')
     return send_file('template.wtml')
 
 
