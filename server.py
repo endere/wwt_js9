@@ -29,8 +29,9 @@ def wwt_js9_home():
 
 @app.route('/wwtcdn', methods=['GET'])
 def wwtcdn():
+    print('here')
     print(webbrowser.open('http://www.worldwidetelescope.org/scripts/wwtsdk.aspx'))
-    return redirect('http://www.worldwidetelescope.org/scripts/wwtsdk.aspx')
+    return 'test'
 
 
 @app.route('/<file>', methods=['GET'])
