@@ -37,11 +37,11 @@
          Projection="" 
          Name="stored image" 
          FileType=".jpg" 
-         CenterY="10" 
-         CenterX="10" 
+         CenterY="0" 
+         CenterX="0" 
          BottomsUp="False" 
-         OffsetX="-10" 
-         OffsetY="-10" 
+         OffsetX="0" 
+         OffsetY="0" 
          BaseTileLevel="0" 
          BaseDegreesPerTile="20">
  
