@@ -27,6 +27,8 @@ def wwt_js9_home():
     try:
         return send_file('public/js9-1.12/WWT.html')
     except Exception:
+        print('exception found')
+        print('in the try except')
         print(Exception)
 
 
