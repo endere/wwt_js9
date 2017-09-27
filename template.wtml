@@ -30,7 +30,7 @@
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
          TileLevels="4" 
-         WidthFactor="4" 
+         WidthFactor="2" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
@@ -43,7 +43,7 @@
          OffsetX="-0.0013888889225" 
          OffsetY="-0.0013888889225" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="11.37777805312">
+         BaseDegreesPerTile="1">
  
          <Credits>
          </Credits>
