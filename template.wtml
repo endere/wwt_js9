@@ -8,19 +8,19 @@
        <VersionDependent>false</VersionDependent>
  
    <Place 
-     Name="Stored Image" 
+     Name="Stored image" 
      DataSetType="Sky" 
-     RA="16.5496517733333" 
-     Dec="-23.25002666" 
+     RA="10"
+     Dec="52"
      Constellation="AND" 
      Classification="Unfiltered" 
      Magnitude="0" 
      Distance="0" 
-     ZoomLevel="0" 
+     ZoomLevel="61.76666816142" 
      Rotation="0" 
      Angle="0" 
      Opacity="100" 
-     AngularSize="0">
+     AngularSize="1">
  
      <Target>Undefined</Target>
      <ForegroundImageSet>
@@ -29,21 +29,21 @@
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
-         TileLevels="1" 
+         TileLevels="4" 
          WidthFactor="2" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
-         Projection="" 
+         Projection="Tangent" 
          Name="stored image" 
-         FileType=".jpg" 
-         CenterY="10" 
+         FileType=".png" 
+         CenterY="5" 
          CenterX="10" 
          BottomsUp="False" 
-         OffsetX="0" 
-         OffsetY="0" 
+         OffsetX="-0.0013888889225" 
+         OffsetY="-0.0013888889225" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="20">
+         BaseDegreesPerTile="11.37777805312">
  
          <Credits>
          </Credits>
