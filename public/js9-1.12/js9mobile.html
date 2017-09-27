@@ -1,0 +1,201 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge;chrome=1" > 
+  <meta name="viewport" content="width=device-width, initial-scale=0.70">
+  <link type="image/x-icon" rel="shortcut icon" href="./favicon.ico">
+  <link type="text/css" rel="stylesheet" href="js9support.css">
+  <link type="text/css" rel="stylesheet" href="js9.css">
+  <link rel="apple-touch-icon" href="images/js9-apple-touch-icon.png">
+  <script type="text/javascript" src="js9prefs.js"></script>
+  <script type="text/javascript" src="js9support.min.js"></script>
+  <script type="text/javascript" src="js9.min.js"></script>
+  <script type="text/javascript" src="js9plugins.js"></script>
+  <style type="text/css">
+      #cfaheader {
+          left:10px;
+          top: 10px;
+          font-size: 22px;
+          margin-top: 15px;
+          margin-bottom: 15px;
+      }
+      #cfaheader font {
+          font-size: inherit;
+      }
+      #maindiv {
+          margin: 5px;
+          width: 512px;
+      }
+      .js9TextInput {
+          width: 95%;
+          font-size: 16px;
+      }
+      .JS9MobileButton {
+          font-size: 14px;
+          margin-top: 12px;
+          margin-right: 12px;
+      }
+      .JS9MobileSpan {
+          margin-left: 8px;
+          margin-right: 16px;
+      }
+      .JS9Plot {
+          width:  480px;
+          height: 220px;
+      }
+  </style>
+  <title>JS9</title>
+</head>
+<body>
+    <div id="maindiv">
+
+    <div id="cfaheader">
+    <center><b>
+    JS9: astronomical image display everywhere
+    </b></center>
+    </div>
+
+    <div class="JS9Menubar"></div>
+    <div class="JS9"></div>
+    <div style="margin-top: 2px;"><div class="JS9Colorbar"></div></div>
+
+    <div class="fileButtons" style="margin-top: 2px;">
+    <input type="button" class="JS9Button JS9MobileButton" value="Display Local FITS" onclick="openlocal()">
+    <input type="button" class="JS9Button JS9MobileButton" value="Display Remote FITS" onclick="openproxy()">
+    <input type="button" class="JS9Button JS9MobileButton" value="Surprise Me!" onclick="surpriseme()">
+    </div>
+
+    <div id="keys" class="keyButtons" style="margin-top: 2px;"></div>
+    </div>
+
+    <script type="text/javascript">
+      var cmaps = [
+          {colormap: "viridis"},
+          {colormap: "magma"},
+          {colormap: "heat"},
+          {colormap: "cool"},
+          {colormap: "inferno"},
+          {colormap: "b"},
+          {colormap: "grey"}
+      ];
+      var files = [
+          {file: "./png/3c273.png", obj: {scale: "log"}},
+          {file: "./png/casa.png", obj: {scale: "log"}},
+          {file: "./png/dmitri.png", obj: {scale: "linear"}},
+          {file: "./png/m13.png", obj: {scale: "log"}},
+          {file: "./png/ngc1316.png", obj: {scale: "linear"}},
+          {file: "./png/ngkper.png", obj: {scale: "log"}},
+      ];
+      var keys = [
+        {value: "label", key: "for images:"},
+        {value: "&larr;", key: "<"},
+        {value: "&rarr;", key: ">"},
+        {value: "+"},
+        {value: "-"},
+        {value: "0"},
+        {value: ""},
+        {value: "label", key: "for regions:"},
+        {value: "&larr;", key: "leftArrow"},
+        {value: "&rarr;", key: "rightArrow"},
+        {value: "&uarr;", key: "upArrow"},
+        {value: "&darr;", key: "downArrow"},
+        {value: "b"},
+        {value: "e"},
+        {value: "del",    key: "delete"}
+      ]
+      function openlocal(){
+          JS9.OpenFileMenu();
+      }
+      function openproxy(){
+          var disp = JS9.lookupDisplay();
+          var did = JS9.Image.prototype.displayAnalysis.call(null, "textline",
+                    JS9.InstallDir(JS9.globalOpts.proxyURL),
+                    {title: "Open a link via proxy"});
+          // save info for running the task
+          $(did).data("dispid", disp.id).data("aname", "loadproxy");
+      }
+      function surpriseme(){
+          var fdx = Math.floor(Math.random() * files.length);
+          var fobj = files[fdx];
+          var cdx = Math.floor(Math.random() * cmaps.length);
+          JS9.Load(fobj.file, $.extend({}, cmaps[cdx], fobj.obj));
+      }
+      function keyaction(evt, key){
+          var s, im, ipos, evt;
+	  evt.preventDefault();
+          if( JS9.hasOwnProperty("Keyboard") ){
+              im = JS9.GetImage();
+              evt = $.Event("keydown");
+	      if( key.length === 1 ){
+                  s = key.charCodeAt(0);
+              } else {
+                  switch(key){
+                  case "leftArrow":
+                      s = 37;
+                  break;                    
+                  case "upArrow":
+                      s = 38;
+                  break;                    
+                  case "rightArrow":
+                      s = 39;
+                  break;                    
+                  case "downArrow":
+                      s = 40;
+                  case "delete":
+                      s = 46;
+                  break;                    
+                  }
+              }
+              evt.which = s;
+              evt.keyCode = s;
+              ipos = im ? im.ipos : {x: null, y: null};
+	      JS9.Keyboard.action(im, ipos, evt, key);
+          }
+      }
+      $(document).ready(function(){
+          var i, k, v, key, el;
+          var win = "width=500px,height=240px,center=1,resize=1,scrolling=1";
+          JS9.lightOpts.dhtml.dpathWin = win;
+          JS9.lightOpts.dhtml.plotWin = win;
+          JS9.lightOpts.dhtml.textWin = win;
+	  // http://stackoverflow.com/questions/10614481/disable-double-tap-zoom-option-in-browser-on-touch-devices
+          (function($) {
+            $.fn.nodoubletapzoom = function() {
+                $(this).bind('touchstart', function preventZoom(e) {
+                  var t2 = e.timeStamp
+                    , t1 = $(this).data('lastTouch') || t2
+                    , dt = t2 - t1
+                    , fingers = e.originalEvent.touches.length;
+                  $(this).data('lastTouch', t2);
+                  if (!dt || dt > 500 || fingers > 1) return; // not double-tap
+          
+                  e.preventDefault(); // double tap - prevent the zoom
+                  // also synthesize click events we just swallowed up
+                  $(this).trigger('click').trigger('click');
+                });
+            };
+          })(jQuery);
+	  // add "keypress" action buttons
+          for(i=0; i<keys.length; i++){
+              key = keys[i];
+              v = key.value;
+              k = key.key || key.value;              
+              if( v === "" ){
+                  el = "<br>";
+              } else if( v === "label" ){
+                  el = sprintf('<span class="JS9MobileSpan">%s<span>', k);
+              } else if( JS9.globalOpts.keyboardActions[k] ){
+                    el = sprintf('<input type="button" class="JS9Button JS9MobileButton" value="%s" onclick="keyaction(event, \'%s\')">', v, JS9.globalOpts.keyboardActions[k]);
+              } else {
+                  continue;
+              }
+              $(el).appendTo("#keys");
+          }
+          // disable double-click to zoom on keypress action buttons
+	  $(".JS9MobileButton").nodoubletapzoom();
+      });
+    </script>
+</body>
+</html>

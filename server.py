@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, sned_static_file
 import base64
 app = Flask(__name__)
 
@@ -18,10 +18,12 @@ def image_storage():
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
-    print('returning template')
     return send_file('template.wtml')
 
 
+@app.route('/home', methods=['GET'])
+def wwt_js9_home():
+    return app.sned_static_file('public/js9-1.12/WWT.html')
 
 
 def edit_wtml(dictionary):

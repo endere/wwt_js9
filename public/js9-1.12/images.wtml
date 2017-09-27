@@ -1,0 +1,55 @@
+ <Folder 
+     Name="My Places" 
+     Group="Explorer" 
+     Searchable="True" 
+     Type="Sky"
+     Thumbnail="nebula.jpg">
+ 
+       <VersionDependent>false</VersionDependent>
+ 
+   <Place 
+     Name="Stored image" 
+     DataSetType="Sky" 
+     RA="16.5496517733333" 
+     Dec="-23.25002666" 
+     Constellation="AND" 
+     Classification="Unfiltered" 
+     Magnitude="0" 
+     Distance="0" 
+     ZoomLevel="61.76666816142" 
+     Rotation="0" 
+     Angle="0" 
+     Opacity="100" 
+     AngularSize="1">
+ 
+     <Target>Undefined</Target>
+     <ForegroundImageSet>
+       <ImageSet 
+         Generic="False" 
+         DataSetType="Sky" 
+         BandPass="Visible" 
+         Url="https://i.pinimg.com/736x/92/9d/3d/929d3d9f76f406b5ac6020323d2d32dc--pretty-cats-beautiful-cats.jpg" 
+         TileLevels="4" 
+         WidthFactor="2" 
+         Sparse="True" 
+         Rotation="0" 
+         QuadTreeMap="" 
+         Projection="Tangent" 
+         Name="stored image" 
+         FileType=".png" 
+         CenterY="-23.25002666" 
+         CenterX="248.2447766" 
+         BottomsUp="False" 
+         OffsetX="-0.0013888889225" 
+         OffsetY="-0.0013888889225" 
+         BaseTileLevel="0" 
+         BaseDegreesPerTile="11.37777805312">
+ 
+         <Credits>
+         </Credits>
+         <CreditsUrl></CreditsUrl>
+         <ThumbnailUrl></ThumbnailUrl>
+       </ImageSet>
+     </ForegroundImageSet>
+   </Place>
+ </Folder>
