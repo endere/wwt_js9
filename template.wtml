@@ -29,8 +29,8 @@
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="http://www.worldwidetelescope.org/wwtweb/GetTile.aspx?q={1},{2},{3},702440959" 
-         TileLevels="4" 
-         WidthFactor="4" 
+         TileLevels="2" 
+         WidthFactor="1" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
@@ -43,7 +43,7 @@
          OffsetX="-0.0013888889225" 
          OffsetY="-0.0013888889225" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="11.37777805312">
+         BaseDegreesPerTile="0.1">
  
          <Credits>
          </Credits>
