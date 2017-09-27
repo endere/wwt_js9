@@ -16,7 +16,7 @@
      Classification="Unfiltered" 
      Magnitude="0" 
      Distance="0" 
-     ZoomLevel="0" 
+     ZoomLevel="61" 
      Rotation="0" 
      Angle="0" 
      Opacity="100" 
@@ -43,7 +43,7 @@
          OffsetX="-0.0013888889225" 
          OffsetY="-0.0013888889225" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="10">
+         BaseDegreesPerTile="0.1">
  
          <Credits>
          </Credits>
