@@ -28,7 +28,7 @@
          Generic="False" 
          DataSetType="Sky" 
          BandPass="Visible" 
-         Url="http://www.worldwidetelescope.org/wwtweb/GetTile.aspx?q={1},{2},{3},702440959" 
+         Url="https://wwt-js9-server.herokuapp.com/image.jpg" 
          TileLevels="2" 
          WidthFactor="1" 
          Sparse="True" 
