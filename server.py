@@ -26,14 +26,6 @@ def wtml_return():
 def wwt_js9_home():
         return send_file('public/js9-1.12/WWT.html')
 
-@app.route('/wwtcdn', methods=['GET'])
-def wwtcdn():
-    link = "http://www.worldwidetelescope.org/scripts/wwtsdk.aspx"
-    f = requests.get(link)
-    with open('wwtcdn.js', 'w') as file:
-        file.write(f.text)
-    return send_file('wwtcdn.js')
-
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
