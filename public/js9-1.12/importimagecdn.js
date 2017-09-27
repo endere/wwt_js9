@@ -141,7 +141,7 @@ var parseWtml = function(wtml) {
 
         function getImgWtml() {
             $.ajax({
-                url: 'https://wwt-js9-server.herokuapp.com/images.wtml',
+                url: encodedUrl,
                 crossDomain: true,
                 dataType: 'xml'
             }).done(wtmlLoaded).fail(ajaxError);

@@ -12,7 +12,8 @@ function initialize() {
 
 
 function Goto() {
-    loadExternalImage(null, url, function(result){
+    var testurl = 'http://www.petsworld.in/blog/wp-content/uploads/2014/09/cat.jpg'
+    loadExternalImage(null, testurl, function(result){
         console.log(result);
     })
     // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
