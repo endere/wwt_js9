@@ -31,8 +31,9 @@ def wwt_js9_home():
 def wwtcdn():
     link = "http://www.worldwidetelescope.org/scripts/wwtsdk.aspx"
     f = requests.get(link)
-    print(f.text)
-    return 'test'
+    with open('wwtcdn.js', 'w') as file:
+        file.write(f.text)
+    return send_file('wwtcdn.js')
 
 
 @app.route('/<file>', methods=['GET'])
