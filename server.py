@@ -24,7 +24,10 @@ def wtml_return():
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
-    return send_file('public/js9-1.12/WWT.html')
+    try:
+        return send_file('public/js9-1.12/WWT.html')
+    except Exception:
+        print(Exception)
 
 
 @app.route('/wwtcdn', methods=['GET'])
