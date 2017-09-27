@@ -25,7 +25,7 @@
      <Target>Undefined</Target>
      <ForegroundImageSet>
        <ImageSet 
-         Generic="False" 
+         Generic="True" 
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
@@ -36,7 +36,6 @@
          QuadTreeMap="" 
          Projection="" 
          Name="stored image" 
-         ZoomLevel="-50" 
          FileType=".jpg" 
          CenterY="10" 
          CenterX="10s" 
