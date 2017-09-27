@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file, sned_static_file
+from flask import Flask, request, send_file, send_static_file
 import base64
 app = Flask(__name__)
 
@@ -23,7 +23,7 @@ def wtml_return():
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
-    return app.sned_static_file('public/js9-1.12/WWT.html')
+    return app.send_static_file('public/js9-1.12/WWT.html')
 
 
 def edit_wtml(dictionary):
