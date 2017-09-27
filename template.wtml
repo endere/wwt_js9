@@ -20,7 +20,7 @@
      Rotation="0" 
      Angle="0" 
      Opacity="100" 
-     AngularSize="1">
+     AngularSize="0">
  
      <Target>Undefined</Target>
      <ForegroundImageSet>
