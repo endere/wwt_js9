@@ -24,7 +24,7 @@ def view_image():
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
-    return send_file('places.wtml')
+    return send_file('template.wtml')
 
 
 @app.route('/home', methods=['GET'])
