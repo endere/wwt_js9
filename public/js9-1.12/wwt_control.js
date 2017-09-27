@@ -12,13 +12,16 @@ function initialize() {
 
 
 function Goto() {
-    console.log('over here!!!')
-    loadExternalImage(null, testurl, function(result){
-        console.log(result);
-    })
+    // var testurl = 'https://wwt-js9-server.herokuapp.com/
+    // loadExternalImage(null, testurl, function(result){
+    //     console.log(result);
+    // })
     // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
-    // wwt.setForegroundImageByName('Stored Image');
-    wwt.gotoRaDecZoom(10, 5, 0, true);
+    console.log(encodeURIComponent('https://wwt-js9-server.herokuapp.com/'))
+    wwt.setForegroundImageByName('Stored Image');
+    wwt.gotoRaDecZoom(10, 5, 0.2, false);
+    console.log('here');
+
     }
 
 

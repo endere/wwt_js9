@@ -13,14 +13,14 @@ JS9.Image.prototype.getExportURL = function(){
     img.setAttribute("height", height);
     ctx = img.getContext("2d");
     // image display canvas
-    ctx.drawImage(this.display.canvas, 0, 0);
+    ctx.drawImage(this.display.canvas, 0, 0, width / 2, height / 2);
     for( key in this.layers ){
         if( this.layers.hasOwnProperty(key) ){
         // each layer canvas
         if( this.layers[key].dlayer.dtype === "main" &&
             this.layers[key].show ){
             canvas = this.layers[key].dlayer.canvasjq[0];
-            ctx.drawImage(canvas, 0, 0, width, height);
+            ctx.drawImage(canvas, 0, 0, width / 2, height / 2);
         }
         }
     }
