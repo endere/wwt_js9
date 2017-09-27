@@ -37,8 +37,6 @@ def wwtcdn():
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
-    print(file)
-    print('here here here')
     return send_file('public/js9-1.12/{}'.format(file))
 
 
