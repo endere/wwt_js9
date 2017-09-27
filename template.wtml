@@ -32,7 +32,7 @@
          TileLevels="4" 
          WidthFactor="2" 
          Sparse="True" 
-         Rotation="1" 
+         Rotation="0" 
          QuadTreeMap="" 
          Projection="" 
          Name="stored image" 
