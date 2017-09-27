@@ -27,7 +27,7 @@ def wwt_js9_home():
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
-    print(file)
+    return send_file('public/js9-1.12/{}'.format(file))
 
 
 
