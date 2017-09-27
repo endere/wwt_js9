@@ -13,7 +13,6 @@ function initialize() {
 
 function Goto() {
     console.log('over here!!!')
-    var testurl = 'http://www.petsworld.in/blog/wp-content/uploads/2014/09/cat.jpg'
     loadExternalImage(null, testurl, function(result){
         console.log(result);
     })

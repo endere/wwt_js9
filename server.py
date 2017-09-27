@@ -19,7 +19,7 @@ def image_storage():
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
-    return send_file('template.wtml')
+    return send_file('places.wtml')
 
 
 @app.route('/home', methods=['GET'])
