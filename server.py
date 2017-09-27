@@ -17,7 +17,7 @@ def image_storage():
     else:
         return send_file('saved.png', mimetype='image/png')
 
-@app.route('/image.jpg', methods=['GET'])
+@app.route('/image.png', methods=['GET'])
 def image_storage():
         return send_file('saved.png', mimetype='image/png')
 
