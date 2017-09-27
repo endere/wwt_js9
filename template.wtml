@@ -25,8 +25,8 @@
      <Target>Undefined</Target>
      <ForegroundImageSet>
        <ImageSet 
-         Generic="True" 
-         DataSetType="Sky" 
+         Generic="False" 
+         DataSetType="" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
          TileLevels="1" 
