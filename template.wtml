@@ -39,10 +39,10 @@
          FileType=".jpg" 
          CenterY="10" 
          CenterX="10" 
-         BottomsUp="True" 
+         BottomsUp="False" 
          OffsetX="0" 
          OffsetY="0" 
-         BaseTileLevel="0" 
+         BaseTileLevel="1" 
          BaseDegreesPerTile="10">
  
          <Credits>
