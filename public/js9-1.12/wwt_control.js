@@ -12,11 +12,11 @@ function initialize() {
 
 
 function Goto() {
-    // loadExternalImage(null, url, function(result){
-    //     console.log(result);
-    // })
+    loadExternalImage(null, url, function(result){
+        console.log(result);
+    })
     // wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
-    wwt.setForegroundImageByName('Stored Image');
+    // wwt.setForegroundImageByName('Stored Image');
     wwt.gotoRaDecZoom(10, 5, 0, true);
     }
 
