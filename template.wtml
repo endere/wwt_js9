@@ -29,8 +29,8 @@
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
-         TileLevels="1" 
-         WidthFactor="1" 
+         TileLevels="4" 
+         WidthFactor="4" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
@@ -42,7 +42,7 @@
          BottomsUp="False" 
          OffsetX="0" 
          OffsetY="0" 
-         BaseTileLevel="1" 
+         BaseTileLevel="0" 
          BaseDegreesPerTile="10">
  
          <Credits>
