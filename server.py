@@ -9,17 +9,17 @@ def image_storage():
     if request.method == 'POST':
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
-        app.stored_image = open("saved.png", "wb")
+        app.stored_image = open("saved.jpg", "wb")
         app.stored_image.write(url_data)
         app.stored_image.close()
         edit_wtml({'RA': str(split_data[2][3:]), 'Dec': str(split_data[1][4:])})
         return 'success'
     else:
-        return send_file('saved.png', mimetype='image/png')
+        return send_file('saved.jpg', mimetype='image/jpg')
 
-@app.route('/image.png', methods=['GET'])
+@app.route('/image.jpg', methods=['GET'])
 def view_image():
-        return send_file('saved.png', mimetype='image/png')
+        return send_file('saved.jpg', mimetype='image/jpg')
 
 
 @app.route('/images.wtml', methods=['GET'])
