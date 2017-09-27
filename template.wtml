@@ -8,7 +8,7 @@
        <VersionDependent>false</VersionDependent>
  
    <Place 
-     Name="Stored image" 
+     Name="Stored Image" 
      DataSetType="Sky" 
      RA="16.5496517733333" 
      Dec="-23.25002666" 
