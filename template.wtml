@@ -43,7 +43,7 @@
          OffsetX="-0.0013888889225" 
          OffsetY="-0.0013888889225" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="0.1">
+         BaseDegreesPerTile="10">
  
          <Credits>
          </Credits>
