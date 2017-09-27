@@ -37,7 +37,7 @@
          Projection="Tangent" 
          Name="stored image" 
          FileType=".png" 
-         CenterY="5" 
+         CenterY="10" 
          CenterX="10" 
          BottomsUp="False" 
          OffsetX="-0.0013888889225" 
