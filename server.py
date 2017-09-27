@@ -26,9 +26,9 @@ def wwt_js9_home():
     return send_file('public/js9-1.12/WWT.html')
 
 
-# @app.route('/wwtcdn', methods=['GET'])
-# def wwtcdn():
-#     return redirect('http://www.worldwidetelescope.org/scripts/wwtsdk.aspx')
+@app.route('/wwtcdn', methods=['GET'])
+def wwtcdn():
+    return redirect('http://www.worldwidetelescope.org/scripts/wwtsdk.aspx')
 
 
 @app.route('/<file>', methods=['GET'])
