@@ -25,6 +25,11 @@ def wtml_return():
 def wwt_js9_home():
     return send_file('public/js9-1.12/WWT.html')
 
+@app.route('/<file>', methods=['GET'])
+def give_file(file):
+    print(file)
+
+
 
 def edit_wtml(dictionary):
     with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
