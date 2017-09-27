@@ -34,7 +34,7 @@
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
-         Projection="Tangent" 
+         Projection="" 
          Name="stored image" 
          FileType=".jpg" 
          CenterY="10" 
