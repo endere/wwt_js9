@@ -29,21 +29,21 @@
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
-         TileLevels="4" 
-         WidthFactor="2" 
+         TileLevels="0" 
+         WidthFactor="0" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
          Projection="Tangent" 
          Name="stored image" 
-         FileType=".png" 
+         FileType=".jpg" 
          CenterY="10" 
          CenterX="10" 
          BottomsUp="False" 
-         OffsetX="-0.0013888889225" 
-         OffsetY="-0.0013888889225" 
+         OffsetX="0" 
+         OffsetY="0" 
          BaseTileLevel="0" 
-         BaseDegreesPerTile="11.37777805312">
+         BaseDegreesPerTile="0">
  
          <Credits>
          </Credits>
