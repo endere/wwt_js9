@@ -38,7 +38,7 @@
          Name="stored image" 
          FileType=".jpg" 
          CenterY="10" 
-         CenterX="10s" 
+         CenterX="10" 
          BottomsUp="False" 
          OffsetX="0" 
          OffsetY="0" 
