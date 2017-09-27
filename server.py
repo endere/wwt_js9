@@ -44,7 +44,7 @@ def edit_wtml(dictionary):
         for line in old.readlines():
             try:
                 attribute = list(filter(lambda x: x in line, list(dictionary.keys())))[0]
-                new.write(' ' * 5 + attribute + '=' + '"' + dictionary[attribute] + '"' + '\n')
+                new.write(' ' * 5 + attribute + '=' + '"' + str(dictionary[attribute]) + '"' + '\n')
             except IndexError:
                 new.write(line)
 
