@@ -39,7 +39,7 @@
          FileType=".jpg" 
          CenterY="10" 
          CenterX="10" 
-         BottomsUp="False" 
+         BottomsUp="True" 
          OffsetX="0" 
          OffsetY="0" 
          BaseTileLevel="0" 
