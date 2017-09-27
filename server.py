@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, redirect
 import base64
 app = Flask(__name__)
 
@@ -28,7 +28,7 @@ def wwt_js9_home():
 
 @app.route('/wwtcdn', methods=['GET'])
 def wwtcdn():
-    return 'http://www.worldwidetelescope.org/scripts/wwtsdk.aspx'
+    return redirect('http://www.worldwidetelescope.org/scripts/wwtsdk.aspx')
 
 
 @app.route('/<file>', methods=['GET'])
