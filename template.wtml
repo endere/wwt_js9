@@ -28,7 +28,7 @@
          Generic="False" 
          DataSetType="Sky" 
          BandPass="Visible" 
-         Url="https://wwt-js9-server.herokuapp.com/image.jpg" 
+         Url="https://wwt-js9-server.herokuapp.com/" 
          TileLevels="2" 
          WidthFactor="1" 
          Sparse="True" 
