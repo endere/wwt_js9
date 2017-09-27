@@ -29,7 +29,7 @@
          DataSetType="Sky" 
          BandPass="Visible" 
          Url="https://wwt-js9-server.herokuapp.com/" 
-         TileLevels="4" 
+         TileLevels="0" 
          WidthFactor="2" 
          Sparse="True" 
          Rotation="0" 
