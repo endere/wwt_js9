@@ -23,6 +23,10 @@ def wtml_return():
     return send_file('template.wtml')
 
 
+@app.route('/images2.wtml', methods=['GET'])
+def wtml_return():
+    return send_file('images.wtml')
+
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
         return send_file('public/js9-1.12/WWT.html')
@@ -43,6 +47,7 @@ def edit_wtml(dictionary):
                 new.write(' ' * 5 + attribute + '=' + '"' + dictionary[attribute] + '"' + '\n')
             except IndexError:
                 new.write(line)
+                
 
 
 if __name__ == '__main__':
