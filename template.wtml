@@ -36,7 +36,7 @@
          QuadTreeMap="" 
          Projection="" 
          Name="stored image" 
-         ZoomLevel="50" 
+         ZoomLevel="-50" 
          FileType=".jpg" 
          CenterY="10" 
          CenterX="10s" 
