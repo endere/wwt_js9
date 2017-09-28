@@ -35,6 +35,7 @@ def second_wtml_return():
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
+        print('this was not here before')
         return send_file('public/js9-1.12/WWT.html')
 
 
