@@ -27,6 +27,7 @@ function Goto() {
 //     id: 'WWTCanvas',
 //     style: 'width: 750px; height: 750px; border-style: none; border-width: 0px;'
 // }).appendTo('#WorldWideTelescopeControlHost');
+    console.log('over hereee!!!!!!!!!!!!');
     var wwt = initialize();
     setTimeout(function(){
         wwt.setForegroundImageByName('Stored Image');
