@@ -11,7 +11,7 @@ function initialize() {
     wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images2.wtml');
     return wwt;
 }
-
+//
 
 function Goto() {
     // var testurl = 'https://wwt-js9-server.herokuapp.com/

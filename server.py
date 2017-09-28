@@ -17,7 +17,7 @@ def image_storage():
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
-
+#
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
