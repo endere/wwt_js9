@@ -35,7 +35,7 @@ function Goto() {
 
     }
 //
-
+//
 // function setImage(b){
 //     // var b = wwt.getImagesetByName(a);
 //     wwt.renderContext.set_foregroundImageset(b);
