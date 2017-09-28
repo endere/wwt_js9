@@ -10,8 +10,8 @@
    <Place 
      Name="Stored image" 
      DataSetType="Sky" 
-     RA="b'10456456'"
-     Dec="b'10234'"
+     RA="1000"
+     Dec="50"
      Constellation="AND" 
      Classification="Unfiltered" 
      Magnitude="0" 
