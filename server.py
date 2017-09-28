@@ -51,5 +51,5 @@ def edit_wtml(dictionary):
 
 
 if __name__ == '__main__':
-    # app.run()
-    edit_wtml({'RA': b'1000', 'Dec': b'50'})
+    app.run()
+    # edit_wtml({'RA': b'1000', 'Dec': b'50'})
