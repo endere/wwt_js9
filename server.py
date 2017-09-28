@@ -1,7 +1,6 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file, redirect
+from flask import Flask, request, send_file
 import base64
-import requests
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
@@ -12,6 +11,8 @@ def image_storage():
         app.stored_image = open("saved.png", "wb")
         app.stored_image.write(url_data)
         app.stored_image.close()
+        # app.ra = split_data[2][3:].decode('utf-8')
+        # app.dec = split_data[1][4:].decode('utf-8')
         edit_wtml({'RA': split_data[2][3:], 'Dec': split_data[1][4:]})
         return 'success'
     else:
@@ -21,6 +22,11 @@ def image_storage():
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
     return send_file('template.wtml')
+
+
+# @app.route('/RA', methods=['GET'])
+# def get_RA():
+#         return send_file('public/js9-1.12/WWT.html')
 
 
 @app.route('/images2.wtml', methods=['GET'])
