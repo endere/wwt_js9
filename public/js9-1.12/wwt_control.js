@@ -34,7 +34,7 @@ function Goto() {
     }, 1000);
 
     }
-
+//
 
 // function setImage(b){
 //     // var b = wwt.getImagesetByName(a);
