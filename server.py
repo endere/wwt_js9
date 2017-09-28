@@ -38,8 +38,8 @@ def give_file(file):
 
 
 def edit_wtml(dictionary):
-    print('here is the dict')
-    print(dictionary)
+    dictionary['CenterX'] = dictionary['RA']
+    dictionary['CenterY'] = dictionary['Dec']
     with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
         for line in old.readlines():
             try:
