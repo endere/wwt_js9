@@ -1,5 +1,5 @@
 function wwtReady() {
-    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images2.wtml');
+    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
 
 }
  
@@ -8,7 +8,7 @@ function initialize() {
     var wwt = wwtlib.WWTControl.initControl("WWTCanvas");
 
     // wwt.add_ready(wwtReady);
-    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images2.wtml');
+    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
     return wwt;
 }
 //
@@ -27,7 +27,6 @@ function Goto() {
 //     id: 'WWTCanvas',
 //     style: 'width: 750px; height: 750px; border-style: none; border-width: 0px;'
 // }).appendTo('#WorldWideTelescopeControlHost');
-    console.log('over hereee!!!!!!!!!!!!');
     var wwt = initialize();
     setTimeout(function(){
         wwt.setForegroundImageByName('Stored Image');

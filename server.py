@@ -21,17 +21,12 @@ def image_storage():
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
-    return send_file('template.wtml')
+    return send_file('images.wtml')
 
 
 # @app.route('/RA', methods=['GET'])
 # def get_RA():
 #         return send_file('public/js9-1.12/WWT.html')
-
-
-@app.route('/images2.wtml', methods=['GET'])
-def second_wtml_return():
-    return send_file('images.wtml')
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
