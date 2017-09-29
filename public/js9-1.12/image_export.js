@@ -62,7 +62,7 @@ function failed(response){
 function updateImage() {
     $.ajax({
         type: 'GET',
-        url: 'http://wwt-js9-server.herokuapp.com/',
+        url: 'http://wwt-js9-server.herokuapp.com/image.png',
         crossDomain: true,
         processData: false,
         contentType: false,
