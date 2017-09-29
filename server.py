@@ -19,6 +19,10 @@ def image_storage():
         return send_file('saved.png', mimetype='image/png')
 #
 
+@app.route('/image.png', methods=['GET'])
+def image_return():
+    return send_file('saved.png', mimetype='image/png')
+
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
     return send_file('images.wtml')
@@ -35,7 +39,6 @@ def wtml_return():
 
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
-        print('this was not here before')
         return send_file('public/js9-1.12/WWT.html')
 
 
