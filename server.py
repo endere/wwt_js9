@@ -47,12 +47,12 @@ def give_file(file):
 def edit_wtml(dictionary):
     dictionary['CenterX'] = dictionary['RA']
     dictionary['CenterY'] = dictionary['Dec']
-    dictionary['BaseDegreesPerTile'] += b'>'
     with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
         for line in old.readlines():
             try:
                 attribute = list(filter(lambda x: x in line, list(dictionary.keys())))[0]
-                new.write(' ' * 5 + attribute + '=' + '"' + dictionary[attribute].decode('utf-8') + '"' + '\n')
+                carrot = '>' if attribute == 'BaseDegreesPerTile' else ''
+                new.write(' ' * 5 + attribute + '=' + '"' + dictionary[attribute].decode('utf-8') + '"' + carrot + '\n')
             except IndexError:
                 new.write(line)
 
