@@ -13,7 +13,7 @@ def image_storage():
         app.stored_image.close()
         # app.ra = split_data[2][3:].decode('utf-8')
         # app.dec = split_data[1][4:].decode('utf-8')
-        edit_wtml({'RA': split_data[2][3:], 'Dec': split_data[1][4:]})
+        edit_wtml({'RA': split_data[2][3:], 'Dec': split_data[1][4:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
