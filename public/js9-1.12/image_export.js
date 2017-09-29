@@ -41,7 +41,7 @@ $(document).ready(function(){
 function flaskRequest(attatchments) {
     $.ajax({
         type: 'POST',
-        url: 'http://wwt-js9-server.herokuapp.com/',
+        url: 'https://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,
@@ -62,7 +62,7 @@ function failed(response){
 function updateImage() {
     $.ajax({
         type: 'GET',
-        url: 'http://wwt-js9-server.herokuapp.com/',
+        url: 'https://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,
