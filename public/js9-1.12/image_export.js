@@ -1,7 +1,7 @@
 
 
 
-JS9.Image.prototype.getExportURL = function(){
+JS9.Image.prototype.getExportURL = function(factor){
     //Edited save file code from JS9
     var key,img, ctx;
     var canvas, width, height;
@@ -13,14 +13,14 @@ JS9.Image.prototype.getExportURL = function(){
     img.setAttribute("height", height);
     ctx = img.getContext("2d");
     // image display canvas
-    ctx.drawImage(this.display.canvas, 0, 0, width / 2, height / 2);
+    ctx.drawImage(this.display.canvas, 0, 0, width / factor, height / factor);
     for( key in this.layers ){
         if( this.layers.hasOwnProperty(key) ){
         // each layer canvas
         if( this.layers[key].dlayer.dtype === "main" &&
             this.layers[key].show ){
             canvas = this.layers[key].dlayer.canvasjq[0];
-            ctx.drawImage(canvas, 0, 0, width / 2, height / 2);
+            ctx.drawImage(canvas, 0, 0, width / factor, height / factor);
         }
         }
     }
@@ -33,12 +33,28 @@ $(document).ready(function(){
     $('#submit').click(function(event){
         event.preventDefault();
         image = JS9.GetImage();
-        flaskRequest([image.getExportURL(), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()]);
+        flaskRequest([image.getExportURL(2), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()], updateImage);
         // flaskRequest(image.getExportURL());
     })
 });
 
-function flaskRequest(attatchments) {
+$(document).ready(function(){
+    $('#viewInwwt').click(function(event){
+        event.preventDefault();
+        image = JS9.GetImage();
+        flaskRequest([image.getExportURL(1), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()], viewImageRequest);
+    })
+});
+function viewImageRequest(){
+    window.open('http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=' + $('#RA').val() + '&dec='+ $('#Dec').val() +'&x=' + $('#RA').val() + '&y=' + $('#Dec').val() + '&scale=' + $('#BaseDegreesPerTile').val() + '&rotation=' + $('#Rotation').val() + '&imageurl=http://wwt-js9-server.herokuapp.com/image.png');
+}
+
+function viewReqSuccess(response){
+    console.log('success');
+    var wind = window.open("");
+    wind.document.write(response);
+}
+function flaskRequest(attatchments, callback) {
     $.ajax({
         type: 'POST',
         url: 'http://wwt-js9-server.herokuapp.com/',
@@ -46,7 +62,7 @@ function flaskRequest(attatchments) {
         processData: false,
         contentType: false,
         data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2] + '&Rotation=' + attatchments[3] + '&BaseDegreesPerTile=' + attatchments[4]
-    }).done(updateImage).fail(failed);
+    }).done(callback).fail(failed);
 
 }
 function success(response){
