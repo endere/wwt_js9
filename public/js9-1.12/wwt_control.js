@@ -1,5 +1,5 @@
 function wwtReady() {
-    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
+    wwt.loadImageCollection('http://wwt-js9-server.herokuapp.com/images.wtml');
 
 }
  
@@ -8,7 +8,7 @@ function initialize() {
     var wwt = wwtlib.WWTControl.initControl("WWTCanvas");
 
     // wwt.add_ready(wwtReady);
-    wwt.loadImageCollection('https://wwt-js9-server.herokuapp.com/images.wtml');
+    wwt.loadImageCollection('http://wwt-js9-server.herokuapp.com/images.wtml');
     return wwt;
 }
 //
