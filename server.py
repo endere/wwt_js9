@@ -21,7 +21,7 @@ def image_storage():
 
 @app.route('/image.png', methods=['GET'])
 def image_return():
-    return send_file('saved.png', mimetype='image/png')
+    return send_file('saved.png', mimetype='image/png', cache_timeout=1)
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
