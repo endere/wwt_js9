@@ -54,6 +54,7 @@ def give_file(file):
 def headerParse():
         print(base64.b64decode(request.data))
         print(type(request.data))
+        print('over here. trying to print')
         return 'success'
 
 
