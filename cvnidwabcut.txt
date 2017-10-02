@@ -1,0 +1,1 @@
+http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=&ra=189.67166666666665&dec=32.77194444444444&x=457.0&y=471.0&rotation=-0.00010826155916277003&imageurl=test.png

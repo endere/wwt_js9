@@ -47,6 +47,12 @@ def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
 
 
+@app.route('/header', methods=['POST'])
+def headerParse():
+        print(request.data)
+        return 'header has been received'
+
+
 def edit_wtml(dictionary):
     dictionary['CenterX'] = dictionary['RA']
     dictionary['CenterY'] = dictionary['Dec']
