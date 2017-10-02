@@ -85,8 +85,8 @@ base_url = 'http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?'
 def viewinwwt(header2):
     # dirpath = sys.argv[1]
     # filenames = [f for f in os.listdir(filepath) if f.endswith('fits')]
-    fname = '{:s}.txt'.format(os.path.splitext(os.path.split(filename)[1])[0])
-    outfile = fname
+    # fname = '{:s}.txt'.format(os.path.splitext(os.path.split(filename)[1])[0])
+    # outfile = fname
     header = fits.getheader('cvnidwabcut.fits')
     print(header)
     print('----------------------------')
@@ -121,8 +121,8 @@ def viewinwwt(header2):
     request = 'name={name}&ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}'.format(**reqd)
     print('request is:' + request)
     print(reqd['scale'])
-    with open(outfile, 'w') as outp:
-        outp.write('{0:s}{1:s}'.format(base_url, request))
+    # with open(outfile, 'w') as outp:
+    #     outp.write('{0:s}{1:s}'.format(base_url, request))
     return
 
 
