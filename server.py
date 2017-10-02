@@ -49,7 +49,8 @@ def give_file(file):
 
 @app.route('/header', methods=['POST'])
 def headerParse():
-        print(request.data)
+        print(type(request.data))
+        print(str(request.data))
         return 'header has been received'
 
 
