@@ -109,6 +109,10 @@ def viewinwwt(filename, imageurl):
     return
 
 
+
+def test(dict):
+    print('got it')
+    return dict
 if __name__ == "__main__":
     # directory = sys.argv[1]
     # filenames = [f for f in os.path.listdir(directory) if f.endswith('fits')]
