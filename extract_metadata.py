@@ -124,7 +124,7 @@ def viewinwwt(header2):
     # with open(outfile, 'w') as outp:
     #     outp.write('{0:s}{1:s}'.format(base_url, request))
     print(request)
-    return
+    return request
 
 
 

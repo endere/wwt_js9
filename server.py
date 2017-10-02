@@ -54,9 +54,7 @@ def give_file(file):
 @app.route('/header', methods=['POST'])
 def headerParse():
     # extract_metadata.viewinwwt(request.data.decode('utf-8'))
-    thing = request.data.decode('utf-8')
-    print(json.loads(thing))
-    print(type(thing))
+    print(extract_metadata.viewinwwt(json.loads(request.data.decode('utf-8'))))
     return 'success'
 
 def edit_wtml(dictionary):
