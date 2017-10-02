@@ -101,7 +101,7 @@ def viewinwwt(header2):
         ra_str = header['RA']
         dec_str = header['DEC']
     except:
-        print('{:s} does not have the needed header keys'.format(filename))
+        print('{:s} does not have the needed header keys'.format('test'))
         return
     coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
     reqd['ra'] = coord.ra.value
@@ -111,16 +111,16 @@ def viewinwwt(header2):
 
     wcs = WCS(header)
     test_wcs = WCS()
-    print(test_wcs)
-    print(wcs.to_header())
+    # print(test_wcs)
+    # print(wcs.to_header())
 
     print(type(wcs))
     reqd['scale'] = proj_plane_pixel_scales(wcs)[0]
-    reqd['name'] = os.path.split(filename)[0]
+    # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
-    request = 'name={name}&ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}'.format(**reqd)
-    print('request is:' + request)
-    print(reqd['scale'])
+    request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}'.format(**reqd)
+    # print('request is:' + request)
+    # print(reqd['scale'])
     # with open(outfile, 'w') as outp:
     #     outp.write('{0:s}{1:s}'.format(base_url, request))
     return
