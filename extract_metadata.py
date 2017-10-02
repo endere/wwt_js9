@@ -100,25 +100,28 @@ def viewinwwt(header2):
         reqd['y'] = header['CRPIX2']
         ra_str = header['RA']
         dec_str = header['DEC']
+        coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
+        reqd['ra'] = coord.ra.value
+        reqd['dec'] = coord.dec.value
     except:
-        print('{:s} does not have the needed header keys'.format('test'))
-        return
-    coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
-    reqd['ra'] = coord.ra.value
-    reqd['dec'] = coord.dec.value
+        try:
+            reqd['ra'] = header['RA_CENT']
+            reqd['dec'] = header['DEC_CENT']
+        except:
+            print('Header does not have the needed header keys')
+            return
+
 
     reqd['rotation'] = _calculate_rotation_angle('icrs', header)
 
     wcs = WCS(header)
-    test_wcs = WCS()
     # print(test_wcs)
     # print(wcs.to_header())
 
-    print(type(wcs))
     reqd['scale'] = proj_plane_pixel_scales(wcs)[0]
     # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
-    request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}'.format(**reqd)
+    request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
     # print('request is:' + request)
     # print(reqd['scale'])
     # with open(outfile, 'w') as outp:
