@@ -84,6 +84,8 @@ def viewinwwt(filename, imageurl):
     outfile = fname
     header = fits.getheader(filename)
     print(header)
+    print(type(header))
+
     reqd = {'imageurl': imageurl}
     try:
         reqd['x'] = header['CRPIX1']
@@ -102,7 +104,7 @@ def viewinwwt(filename, imageurl):
     wcs = WCS(header)
     reqd['scale'] = proj_plane_pixel_scales(wcs)[0]
     reqd['name'] = os.path.split(filename)[0]
-    print(reqd)
+    # print(reqd)
     request = 'name={name}&ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&imageurl={imageurl}'.format(**reqd)
     with open(outfile, 'w') as outp:
         outp.write('{0:s}{1:s}'.format(base_url, request))

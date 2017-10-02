@@ -1,16 +1,21 @@
 #!/usr/bin/python
 from flask import Flask, request, send_file
 import base64
+import extract_metadata
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
         split_data = request.data.split(b'&')
-        url_data = base64.b64decode(split_data[0][26:])
-        app.stored_image = open("saved.png", "wb")
-        app.stored_image.write(url_data)
-        app.stored_image.close()
+        url_data = base64.b64decode(split_data[0])
+        print(url_data)
+        # url_data = base64.b64decode(split_data[0][26:])
+        # app.stored_image = open("saved.png", "wb")
+        # app.stored_image.write(url_data)
+        # app.stored_image.close()
+
+        
         # app.ra = split_data[2][3:].decode('utf-8')
         # app.dec = split_data[1][4:].decode('utf-8')
         edit_wtml({'RA': split_data[2][3:], 'Dec': split_data[1][4:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
