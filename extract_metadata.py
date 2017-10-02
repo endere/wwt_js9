@@ -3,14 +3,12 @@ import os
 import sys
 
 import astropy.units as u
-import matplotlib.pylab as plt
 import numpy as np
 
 from astropy.coordinates import SkyCoord
 from astropy.io import fits
 from astropy.wcs import WCS
 from astropy.wcs.utils import proj_plane_pixel_scales
-from matplotlib.colors import LogNorm
 
 # FROM ASTROPY PYREGION, WILL ADD IMPORT WHEN ITS OUT OF DEV VERSION!!!
 def _calculate_rotation_angle(reg_coordinate_frame, header):
@@ -109,23 +107,6 @@ def viewinwwt(filename, imageurl):
     with open(outfile, 'w') as outp:
         outp.write('{0:s}{1:s}'.format(base_url, request))
     return
-
-
-def makepng(filename):
-    header = fits.getheader(filename)
-    data = fits.getdata(filename)
-    try:
-        plt.imshow(data, cmap=plt.cm.Greys, norm=LogNorm(),
-                   vmin=header['IRAF-MIN'], vmax=header['IRAF-MAX'])
-    except KeyError:
-        plt.imshow(data, cmap=plt.cm.Greys, norm=LogNorm())
-
-    plt.axis('off')
-    plt.tight_layout()
-    fname = '{0:s}.png'.format(os.path.splitext(os.path.split(filename)[1])[0])
-    outfig = fname
-    plt.savefig(outfig)
-    return outfig
 
 
 if __name__ == "__main__":
