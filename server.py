@@ -52,9 +52,9 @@ def give_file(file):
 
 @app.route('/header', methods=['POST'])
 def headerParse():
+        print(base64.b64decode(request.data))
         print(type(request.data))
-        print(str(request.data))
-        return 'header has been received'
+        return 'success'
 
 
 def edit_wtml(dictionary):
