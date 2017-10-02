@@ -55,7 +55,7 @@ def give_file(file):
 def headerParse():
     # extract_metadata.viewinwwt(request.data.decode('utf-8'))
     thing = request.data.decode('utf-8')
-    print(thing)
+    print(json.loads(thing))
     print(type(thing))
     return 'success'
 
