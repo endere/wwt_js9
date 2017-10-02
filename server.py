@@ -52,6 +52,7 @@ def give_file(file):
 
 @app.route('/header', methods=['POST'])
 def headerParse():
+        print('working')
         print(base64.b64decode(request.data))
         print(type(request.data))
         print('over here. trying to print')
