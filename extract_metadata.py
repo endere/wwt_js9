@@ -87,6 +87,8 @@ def viewinwwt(header2):
     # filenames = [f for f in os.listdir(filepath) if f.endswith('fits')]
     # fname = '{:s}.txt'.format(os.path.splitext(os.path.split(filename)[1])[0])
     # outfile = fname
+    test = fits.header.Header(header2)
+    print(test)
     header = fits.getheader(header2)
     print(header)
     print('----------------------------')
