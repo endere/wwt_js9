@@ -2,6 +2,7 @@
 from flask import Flask, request, send_file
 import base64
 import extract_metadata
+import json
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
@@ -52,7 +53,7 @@ def give_file(file):
 
 @app.route('/header', methods=['POST'])
 def headerParse():
-        thing = request.data.decode('ascii')
+        thing = json.loads(request.data.decode('ascii'))
         print(thing)
         print(type(thing))
         return 'success'
