@@ -82,16 +82,19 @@ def _calculate_rotation_angle(reg_coordinate_frame, header):
 public_folder = '/home/AAS/js9_wwt_server/'
 base_url = 'http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?'
 
-def viewinwwt(filename, imageurl):
+def viewinwwt(header2):
     # dirpath = sys.argv[1]
     # filenames = [f for f in os.listdir(filepath) if f.endswith('fits')]
     fname = '{:s}.txt'.format(os.path.splitext(os.path.split(filename)[1])[0])
     outfile = fname
-    header = fits.getheader(filename)
+    header = fits.getheader('cvnidwabcut.fits')
     print(header)
+    print('----------------------------')
+    print(header2)
     print(type(header))
+    print(type(header2))
 
-    reqd = {'imageurl': imageurl}
+    reqd = {}
     try:
         reqd['x'] = header['CRPIX1']
         reqd['y'] = header['CRPIX2']
@@ -115,7 +118,7 @@ def viewinwwt(filename, imageurl):
     reqd['scale'] = proj_plane_pixel_scales(wcs)[0]
     reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
-    request = 'name={name}&ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&imageurl={imageurl}'.format(**reqd)
+    request = 'name={name}&ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}'.format(**reqd)
     print('request is:' + request)
     print(reqd['scale'])
     with open(outfile, 'w') as outp:
@@ -129,7 +132,5 @@ if __name__ == "__main__":
     # filenames = [f for f in os.path.listdir(directory) if f.endswith('fits')]
     # for filename in filenames:
     filename = 'cvnidwabcut.fits'
-    tester_dict = {'SIMPLE': True, 'BITPIX': -32, 'NAXIS': 2, 'NAXIS1': 913, 'NAXIS2': 941, 'EXTEND': False, 'ORIGIN': 'NOAO-IRAF FITS Image Kernel July 1999', 'IRAF-TLM': '2011-03-24T16:56:50', 'OBJECT': 'cvndwA', 'DATE': '2002-06-19T22:05:50', 'IRAF-MAX': 49696, 'IRAF-MIN': 141, 'CRVAL1': 189.65693199, 'CRPIX1': 457, 'CDELT1': -0.000314899662, 'CTYPE1': 'RA---TAN', 'CRVAL2': 32.7603806435, 'CRPIX2': 471, 'CDELT2': 0.0003148095857, 'CTYPE2': 'DEC--TAN', 'OBSERVAT': 'Hall 1.07m', 'ELEVATIO': 2198, 'INSTRUME': '1:1 f', 'DETECTOR': 'Low Tek 2kx2k', 'DETGAIN': 13, 'CCDSUM': '2 2', 'OBSERVER': 'deidre', 'CCDFNAME': 509.025, 'EXPTIME': 900, 'IMAGETYP': 'object', 'DATE-OBS': '09-05-2000', 'RA': '12:38:41.20', 'DEC': '32:46:19.00', 'AIRMASS': 1.47, 'UT': '4:18:00.00', 'DARKTIME': 900, 'FILTNAME': 'B', 'FILTERS': 2, 'WCSDIM': 2, 'CD1_1': -0.000314899662, 'CD2_2': 0.0003148095857, 'LTM1_1': 1, 'LTM2_2': 1, 'WAT0_001': 'system=image', 'WAT1_001': 'wtype=tan axtype=ra', 'WAT2_001': 'wtype=tan axtype=dec', 'TRIM': 'May  8 21:34 Trim data section is [20:1000,20:1000]', 'OVERSCAN': 'May  8 21:34 Overscan section is [1030:1050,20:1000] with mean=152.7', 'FLATCOR': 'May  8 21:34 Flat field image is flatn6b with scale=13563.56', 'CCDSEC': '[20:1000,20:1000]', 'CCDPROC': 'May  8 21:34 CCD processing done', 'NCOMBINE': 8, 'EQUINOX': 2000}
-
     # imageurl = makepng(filename)
     viewinwwt(filename, 'test.png')
