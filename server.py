@@ -8,6 +8,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
+        print(request.data)
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
         app.stored_image = open("saved.png", "wb")
@@ -65,14 +66,8 @@ def give_file(file):
 #     return 'success'
 
 def edit_wtml(dictionary):
-    print(dictionary)
-    print(type(dictionary))
-    print(dictionary['RA'])
-    print(type(dictionary['RA']))
     dictionary['CenterX'] = dictionary['RA']
     dictionary['CenterY'] = dictionary['Dec']
-    print(dictionary['CenterX'])
-    print(type(dictionary['CenterX']))
     with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
         for line in old.readlines():
             try:
