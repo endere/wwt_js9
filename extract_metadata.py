@@ -98,6 +98,7 @@ def get_coords_dict(head):
     reqd = {}
     reqd['x'] = header['CRPIX1']
     reqd['y'] = header['CRPIX2']
+    print(header['lowestPoint'])
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
