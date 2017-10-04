@@ -89,6 +89,7 @@ def viewinwwt(header2):
     # outfile = fname
     header = fits.header.Header(header2)
     print(header)
+    print(dir(SkyCoord))
     print('----------------------------')
     # print(header2)
     # print(type(header))
@@ -100,6 +101,9 @@ def viewinwwt(header2):
         reqd['y'] = header['CRPIX2']
         ra_str = header['RA']
         dec_str = header['DEC']
+        print(header['RA'])
+        header['testing'] = 'here is a test'
+        print(header['testing'])
         coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
         reqd['ra'] = coord.ra.value
         reqd['dec'] = coord.dec.value
@@ -137,5 +141,4 @@ if __name__ == "__main__":
     # for filename in filenames:
     filename = 'cvnidwabcut.fits'
     # imageurl = makepng(filename)
-    test_dict = {"SIMPLE":True,"BITPIX":-32,"NAXIS":2,"NAXIS1":913,"NAXIS2":941,"EXTEND":False,"ORIGIN":"NOAO-IRAF FITS Image Kernel July 1999","IRAF-TLM":"2011-03-24T16:56:50","OBJECT":"cvndwA","DATE":"2002-06-19T22:05:50","IRAF-MAX":49696,"IRAF-MIN":141,"CRVAL1":189.65693199,"CRPIX1":457,"CDELT1":-0.000314899662,"CTYPE1":"RA---TAN","CRVAL2":32.7603806435,"CRPIX2":471,"CDELT2":0.0003148095857,"CTYPE2":"DEC--TAN","OBSERVAT":"Hall 1.07m","ELEVATIO":2198,"INSTRUME":"1:1 f","DETECTOR":"Low Tek 2kx2k","DETGAIN":13,"CCDSUM":"2 2","OBSERVER":"deidre","CCDFNAME":509.025,"EXPTIME":900,"IMAGETYP":"object","DATE-OBS":"09-05-2000","RA":"12:38:41.20","DEC":"32:46:19.00","AIRMASS":1.47,"UT":"4:18:00.00","DARKTIME":900,"FILTNAME":"B","FILTERS":2,"WCSDIM":2,"CD1_1":-0.000314899662,"CD2_2":0.0003148095857,"LTM1_1":1,"LTM2_2":1,"WAT0_001":"system=image","WAT1_001":"wtype=tan axtype=ra","WAT2_001":"wtype=tan axtype=dec","TRIM":"May  8 21:34 Trim data section is [20:1000,20:1000]","OVERSCAN":"May  8 21:34 Overscan section is [1030:1050,20:1000] with mean=152.7","FLATCOR":"May  8 21:34 Flat field image is flatn6b with scale=13563.56","CCDSEC":"[20:1000,20:1000]","CCDPROC":"May  8 21:34 CCD processing done","NCOMBINE":8,"EQUINOX":2000}
     viewinwwt(test_dict)
