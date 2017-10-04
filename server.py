@@ -22,8 +22,8 @@ def image_storage():
         # app.dec = split_data[1][4:].decode('utf-8')
         for i in split_data:
             print(i)
-            print(i.index('='))
-            print(i[i.index('=')])
+            print(i.index(b'='))
+            print(i[i.index(b'=')])
             print('======')
         edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
         return 'success'
