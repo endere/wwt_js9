@@ -78,7 +78,7 @@ def edit_wtml(dictionary):
             try:
                 attribute = list(filter(lambda x: x in line, list(dictionary.keys())))[0]
                 carrot = '>' if attribute == 'BaseDegreesPerTile' else ''
-                new.write(' ' * 5 + attribute + '=' + '"' + dictionary[attribute] + '"' + carrot + '\n')
+                new.write(' ' * 5 + attribute + '=' + '"' + str(dictionary[attribute]) + '"' + carrot + '\n')
             except IndexError:
                 new.write(line)
 
