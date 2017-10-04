@@ -16,7 +16,9 @@ def image_storage():
         print('-------------')
         print(extract_metadata.viewinwwt(json.loads(split_data[5][7:].decode('utf-8'))))
         print('-------------')
-
+        print(split_data[2][3:])
+        print(type(split_data[2][3:]))
+        print('--------------')
         # app.ra = split_data[2][3:].decode('utf-8')
         # app.dec = split_data[1][4:].decode('utf-8')
         edit_wtml({'RA': split_data[2][3:], 'Dec': split_data[1][4:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
@@ -53,11 +55,11 @@ def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
 
 
-@app.route('/header', methods=['POST'])
-def headerParse():
-    # extract_metadata.viewinwwt(request.data.decode('utf-8'))
-    print(extract_metadata.viewinwwt(json.loads(request.data.decode('utf-8'))))
-    return 'success'
+# @app.route('/header', methods=['POST'])
+# def headerParse():
+#     # extract_metadata.viewinwwt(request.data.decode('utf-8'))
+#     print(extract_metadata.viewinwwt(json.loads(request.data.decode('utf-8'))))
+#     return 'success'
 
 def edit_wtml(dictionary):
     dictionary['CenterX'] = dictionary['RA']
