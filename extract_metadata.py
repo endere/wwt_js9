@@ -109,9 +109,13 @@ def viewinwwt(header2):
             reqd['RA'] = header['RA_CENT']
             reqd['Dec'] = header['DEC_CENT']
         except:
-            print('Header does not have the needed header keys')
-            return
-
+            try:
+                reqd['RA'] = header['CRVAL1']
+                reqd['Dec'] = header['CRVAL2']
+            except:
+                print('Header does not have the needed header keys')
+                return
+                #TODO: EDIT THIS PART SO IT  STILL RETURNS A DICT
 
     reqd['Rotation'] = _calculate_rotation_angle('icrs', header)
 
