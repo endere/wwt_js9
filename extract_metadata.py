@@ -96,14 +96,11 @@ def viewinwwt(header2):
     # print(type(header2))
 
     reqd = {}
+    reqd['x'] = header['CRPIX1']
+    reqd['y'] = header['CRPIX2']
     try:
-        reqd['x'] = header['CRPIX1']
-        reqd['y'] = header['CRPIX2']
         ra_str = header['RA']
         dec_str = header['DEC']
-        print(header['RA'])
-        header['testing'] = 'here is a test'
-        print(header['testing'])
         coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
         reqd['ra'] = coord.ra.value
         reqd['dec'] = coord.dec.value
@@ -125,13 +122,13 @@ def viewinwwt(header2):
     reqd['scale'] = proj_plane_pixel_scales(wcs)[0]
     # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
-    request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
+    # request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
     # print('request is:' + request)
     # print(reqd['scale'])
     # with open(outfile, 'w') as outp:
     #     outp.write('{0:s}{1:s}'.format(base_url, request))
-    print(request)
-    return request
+    # print(request)
+    return reqd
 
 
 

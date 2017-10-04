@@ -13,7 +13,9 @@ def image_storage():
         app.stored_image = open("saved.png", "wb")
         app.stored_image.write(url_data)
         app.stored_image.close()
-
+        print('-------------')
+        print(extract_metadata.viewinwwt(json.loads(split_data[5][7:].decode('utf-8'))))
+        print('-------------')
 
         # app.ra = split_data[2][3:].decode('utf-8')
         # app.dec = split_data[1][4:].decode('utf-8')
