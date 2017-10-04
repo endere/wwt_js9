@@ -19,6 +19,8 @@ def image_storage():
             key = i[:i.index(b'=')].decode('utf-8')
             value = i[i.index(b'=') + 1:].decode('utf-8')
             wtml_dict[key] = value if value != '' else reqd[key]
+        for key in reqd:
+            print(type(reqd[key]))
         print('here is the wtml dict')
         print(wtml_dict)
         edit_wtml(wtml_dict)
