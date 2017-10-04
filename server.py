@@ -69,6 +69,8 @@ def edit_wtml(dictionary):
     print(type(dictionary['RA']))
     dictionary['CenterX'] = str(float(dictionary['RA'] * 15))
     dictionary['CenterY'] = dictionary['Dec']
+    print(dictionary['CenterX'])
+    print(type(dictionary['CenterX']))
     with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
         for line in old.readlines():
             try:

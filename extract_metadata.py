@@ -139,5 +139,4 @@ if __name__ == "__main__":
     filename = 'cvnidwabcut.fits'
     # imageurl = makepng(filename)
     # viewinwwt(test_dict)
-    print(b'test'.decode('utf-8'))
-    print('test'.decode('utf-8'))
+    print(str(float('10') * 15))
