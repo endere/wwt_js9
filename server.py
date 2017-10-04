@@ -14,7 +14,7 @@ def image_storage():
         app.stored_image.write(url_data)
         app.stored_image.close()
         reqd = extract_metadata.viewinwwt(json.loads(split_data[5][7:].decode('utf-8')))
-        wtml_dict = {'x': reqd['x'], 'y': reqd['y']}
+        wtml_dict = {}
         for i in split_data[1:-1]:
             key = i[:i.index(b'=')].decode('utf-8')
             value = i[i.index(b'=') + 1:].decode('utf-8')
@@ -22,6 +22,8 @@ def image_storage():
         print('here is the wtml dict')
         print(wtml_dict)
         edit_wtml(wtml_dict)
+        wtml_dict['x'] = reqd['x']
+        wtml_dict['y'] = reqd['y']
         # edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
         return 'success'
     else:
