@@ -96,8 +96,8 @@ def viewinwwt(header2):
     # print(type(header2))
 
     reqd = {}
-    reqd['CenterX'] = header['CRPIX1']
-    reqd['CenterY'] = header['CRPIX2']
+    reqd['x'] = header['CRPIX1']
+    reqd['y'] = header['CRPIX2']
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
