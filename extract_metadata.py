@@ -96,30 +96,30 @@ def viewinwwt(header2):
     # print(type(header2))
 
     reqd = {}
-    reqd['x'] = header['CRPIX1']
-    reqd['y'] = header['CRPIX2']
+    reqd['CenterX'] = header['CRPIX1']
+    reqd['CenterY'] = header['CRPIX2']
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
         coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
-        reqd['ra'] = coord.ra.value
-        reqd['dec'] = coord.dec.value
+        reqd['RA'] = coord.ra.value
+        reqd['Dec'] = coord.dec.value
     except:
         try:
-            reqd['ra'] = header['RA_CENT']
-            reqd['dec'] = header['DEC_CENT']
+            reqd['RA'] = header['RA_CENT']
+            reqd['Dec'] = header['DEC_CENT']
         except:
             print('Header does not have the needed header keys')
             return
 
 
-    reqd['rotation'] = _calculate_rotation_angle('icrs', header)
+    reqd['Rotation'] = _calculate_rotation_angle('icrs', header)
 
     wcs = WCS(header)
     # print(test_wcs)
     # print(wcs.to_header())
 
-    reqd['scale'] = proj_plane_pixel_scales(wcs)[0]
+    reqd['BaseDegreesPerTile'] = proj_plane_pixel_scales(wcs)[0]
     # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
     # request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
