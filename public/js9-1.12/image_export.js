@@ -29,11 +29,30 @@ JS9.Image.prototype.getExportURL = function(factor){
     return image['src'];
 };
 
+// $(document).ready(function(){
+//     $('#submit').click(function(event){
+//         event.preventDefault();
+//         image = JS9.GetImage();
+//         // headerInfo = headerParse(JS9.GetImageData('array').header);
+//         // console.log(JS9.GetImageData('array'));
+        // console.log(JS9.GetImageData('base64').data);
+//         // flaskRequest([JS9.GetImageData('base64').data, $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()], updateImage);
+//         flaskRequest([image.getExportURL(2), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()], updateImage);
+//         // flaskRequest(image.getExportURL());
+//     })
+// });
+
+
+
 $(document).ready(function(){
     $('#submit').click(function(event){
         event.preventDefault();
-        image = JS9.GetImage();
-        flaskRequest([image.getExportURL(2), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val()], updateImage);
+        // console.log(JS9.GetImageData('base64'));
+        // headerParse(JS9.GetImageData('array').header);
+        // console.log(header.CRPIX1);
+        // headerParse(JS9.GetFITSHeader(true));
+        // console.log(JS9.GetWCS());
+        flaskRequest([JS9.GetImage().getExportURL(2), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), JS9.GetImageData('array').header], success);
         // flaskRequest(image.getExportURL());
     })
 });
@@ -55,56 +74,75 @@ function viewReqSuccess(response){
     wind.document.write(response);
 }
 function flaskRequest(attatchments, callback) {
+    json = JSON.stringify(attatchments[5])
     $.ajax({
         type: 'POST',
         url: 'http://wwt-js9-server.herokuapp.com/',
         crossDomain: true,
         processData: false,
         contentType: false,
-        data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2] + '&Rotation=' + attatchments[3] + '&BaseDegreesPerTile=' + attatchments[4]
+        data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2] + '&Rotation=' + attatchments[3] + '&BaseDegreesPerTile=' + attatchments[4] + '&Header=' + json
     }).done(callback).fail(failed);
 
 }
-function success(response){
-    Goto();
-    // Goto('https://wwt-js9-server.herokuapp.com/' + response);
-}
+
+// function headerParse(headerObject) {
+//     json = JSON.stringify(headerObject);
+//     $.ajax({
+//         type: 'POST',
+//         url: 'http://wwt-js9-server.herokuapp.com/header',
+//         crossDomain: true,
+//         dataType: "json",
+//         contentType: "application/json; charset=utf-8",
+//         data: json,
+//     }).done(headerSuccess).fail(failed);
+// }
+// function success(response){
+//     Goto();
+//     // Goto('https://wwt-js9-server.herokuapp.com/' + response);
+// }
+
+// function headerSuccess(response){
+//     console.log(response)
+// }
 
 function failed(response){
     console.log(response)
     console.log('failed');
 }
 
-function updateImage() {
-    $.ajax({
-        type: 'GET',
-        url: 'http://wwt-js9-server.herokuapp.com/',
-        crossDomain: true,
-        processData: false,
-        contentType: false,
-    }).done(success).fail(failed);
+function success(response) {
+    parsedResp = JSON.parse(response);
+    Goto(parsedResp);
+    // $.ajax({
+    //     type: 'GET',
+    //     url: 'http://wwt-js9-server.herokuapp.com/',
+    //     crossDomain: true,
+    //     processData: false,
+    //     contentType: false,
+    // }).done(success).fail(failed);
 }
 
 
 
 //-----------------------------------------------------------------
-$(document).ready(function(){
-    $('#imabutton').click(function(){
-        image = JS9.GetImage();
-        flaskRequest(image.getExportURL());
-        // testReq();
-        // url = image.getExportURL();
-        // console.log(url.substr(url.length - 5));
-        // $.parseXML('images.wtml');
-        // var file = new File([''], 'images.wtml');
-        // console.log(file);
-        // var reader = new FileReader();
-        // console.log(reader.readAsBinaryString(file));
-        // window.open(image.getExportURL());
-        // window.open(cat_url);
+// $(document).ready(function(){
+//     $('#imabutton').click(function(){
+//         image = JS9.GetImage();
+//         flaskRequest(image.getExportURL());
+//         // testReq();
+//         // url = image.getExportURL();
+//         // console.log(url.substr(url.length - 5));
+//         // $.parseXML('images.wtml');
+//         // var file = new File([''], 'images.wtml');
+//         // console.log(file);
+//         // var reader = new FileReader();
+//         // console.log(reader.readAsBinaryString(file));
+//         // window.open(image.getExportURL());
+//         // window.open(cat_url);
 
-        // wwt.setImage(image.getExportURL());
-    })
-});
+//         // wwt.setImage(image.getExportURL());
+//     })
+// });
 
 var cat_url = 'https://i.pinimg.com/736x/92/9d/3d/929d3d9f76f406b5ac6020323d2d32dc--pretty-cats-beautiful-cats.jpg';

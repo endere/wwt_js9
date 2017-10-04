@@ -13,7 +13,7 @@ function initialize() {
 }
 //
 
-function Goto() {
+function Goto(coordinates) {
     // var testurl = 'https://wwt-js9-server.herokuapp.com/
     // loadExternalImage(null, testurl, function(result){
     //     console.log(result);
@@ -27,10 +27,11 @@ function Goto() {
 //     id: 'WWTCanvas',
 //     style: 'width: 750px; height: 750px; border-style: none; border-width: 0px;'
 // }).appendTo('#WorldWideTelescopeControlHost');
+    console.log(coordinates);
     var wwt = initialize();
     setTimeout(function(){
         wwt.setForegroundImageByName('Stored Image');
-        wwt.gotoRaDecZoom($('#RA').val(), $('#Dec').val(), 0.2, false);
+        wwt.gotoRaDecZoom(parseFloat(coordinates['CenterX']), parseFloat(coordinates['CenterY']), 0.2, false);
     }, 1000);
 
     }
