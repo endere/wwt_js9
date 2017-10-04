@@ -21,7 +21,8 @@ def image_storage():
             wtml_dict[key] = value if value != '' else reqd[key]
         print('here is the wtml dict')
         print(wtml_dict)
-        edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
+        edit_wtml(wtml_dict)
+        # edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
         return 'success'
     else:
         return send_file('saved.png', mimetype='image/png')
