@@ -22,7 +22,9 @@ def image_storage():
         # app.dec = split_data[1][4:].decode('utf-8')
         wtml_dict = {}
         for i in split_data[1:]:
-            wtml_dict[i[:i.index(b'=')]] = i[i.index(b'=') + 1:] if i[i.index(b'=') + 1:] != b'' else reqd[i[:i.index(b'=')]]
+            key = i[:i.index(b'=')].decode('utf-8')
+            value = i[i.index(b'=') + 1:]
+            wtml_dict[key] = value if value != b'' else reqd[key]
         print('here is the wtml dict')
         print(wtml_dict)
         edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
