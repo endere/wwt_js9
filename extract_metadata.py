@@ -138,4 +138,6 @@ if __name__ == "__main__":
     # for filename in filenames:
     filename = 'cvnidwabcut.fits'
     # imageurl = makepng(filename)
-    viewinwwt(test_dict)
+    # viewinwwt(test_dict)
+    print(b'test'.decode('utf-8'))
+    print('test'.decode('utf-8'))
