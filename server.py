@@ -67,7 +67,7 @@ def edit_wtml(dictionary):
     print(type(dictionary))
     print(dictionary['RA'])
     print(type(dictionary['RA']))
-    dictionary['CenterX'] = str(float(dictionary['RA'] * 15))
+    dictionary['CenterX'] = str(float(dictionary['RA']) * 15)
     dictionary['CenterY'] = dictionary['Dec']
     print(dictionary['CenterX'])
     print(type(dictionary['CenterX']))

@@ -139,4 +139,14 @@ if __name__ == "__main__":
     filename = 'cvnidwabcut.fits'
     # imageurl = makepng(filename)
     # viewinwwt(test_dict)
-    print(str(float('10') * 15))
+    dictionary = {'RA': '10'}
+    print(dictionary)
+    print(type(dictionary))
+    print(dictionary['RA'])
+    print(type(dictionary['RA']))
+    test = float(dictionary['RA'])
+    test2 = str(test * 15)
+    print(test2)
+    dictionary['CenterX'] = str(float(dictionary['RA']) * 15)
+    print(dictionary['CenterX'])
+    print(type(dictionary['CenterX']))
