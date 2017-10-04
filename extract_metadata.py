@@ -100,7 +100,10 @@ def get_coords_dict(head):
     reqd['y'] = header['CRPIX2']
     print(header['lowestPoint'])
     print(header['highestPoint'])
-    # angsep = p1.separation(p2).to(u.arcsec) 
+    p1 = SkyCoord(header['lowestPoint'])
+    p2 = SkyCoord(header['highestPoint'])
+    angsep = p1.separation(p2).to(u.arcsec) 
+    print(angsep)
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
