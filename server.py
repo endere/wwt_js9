@@ -25,7 +25,7 @@ def image_storage():
         wtml_dict['x'] = reqd['x']
         wtml_dict['y'] = reqd['y']
         # edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
-        return 'success'
+        return wtml_dict
     else:
         return send_file('saved.png', mimetype='image/png')
 #
