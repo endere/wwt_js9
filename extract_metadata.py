@@ -99,6 +99,8 @@ def get_coords_dict(head):
     reqd['x'] = header['CRPIX1']
     reqd['y'] = header['CRPIX2']
     print(header['lowestPoint'])
+    print(header['highestPoint'])
+    # angsep = p1.separation(p2).to(u.arcsec) 
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
