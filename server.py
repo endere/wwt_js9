@@ -63,6 +63,10 @@ def give_file(file):
 #     return 'success'
 
 def edit_wtml(dictionary):
+    print(dictionary)
+    print(type(dictionary))
+    print(dictionary['RA'])
+    print(type(dictionary['RA']))
     dictionary['CenterX'] = str(float(dictionary['RA'] * 15))
     dictionary['CenterY'] = dictionary['Dec']
     with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
