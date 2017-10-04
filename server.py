@@ -14,7 +14,7 @@ def image_storage():
         app.stored_image = open("saved.png", "wb")
         app.stored_image.write(url_data)
         app.stored_image.close()
-        reqd = extract_metadata.viewinwwt(json.loads(split_data[5][7:].decode('utf-8')))
+        reqd = extract_metadata.get_coords_dict(json.loads(split_data[5][7:].decode('utf-8')))
         wtml_dict = {}
         for i in split_data[1:-1]:
             key = i[:i.index(b'=')].decode('utf-8')

@@ -82,12 +82,12 @@ def _calculate_rotation_angle(reg_coordinate_frame, header):
 public_folder = '/home/AAS/js9_wwt_server/'
 base_url = 'http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?'
 
-def viewinwwt(header2):
+def get_coords_dict(head):
     # dirpath = sys.argv[1]
     # filenames = [f for f in os.listdir(filepath) if f.endswith('fits')]
     # fname = '{:s}.txt'.format(os.path.splitext(os.path.split(filename)[1])[0])
     # outfile = fname
-    header = fits.header.Header(header2)
+    header = fits.header.Header(head)
     print(header)
     print(dir(SkyCoord))
     print('----------------------------')
@@ -102,8 +102,16 @@ def viewinwwt(header2):
         ra_str = header['RA']
         dec_str = header['DEC']
         coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
+        print('----------------------------')
+
+        print(coord)
+        print(type(coord))
+        print(ra_str)
+        print(dec_str)
         reqd['RA'] = coord.ra.value
         reqd['Dec'] = coord.dec.value
+        print('----------------------------')
+
     except:
         try:
             reqd['RA'] = header['RA_CENT']
