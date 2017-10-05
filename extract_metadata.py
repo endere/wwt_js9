@@ -120,7 +120,6 @@ def get_coords_dict(head):
     print(scale)
     print(type(scale))
     print(dir(scale))
-    print(scale.tuple_to_float())
     print(scale.value)
     print(scale.value())
     print('==============')
