@@ -137,7 +137,7 @@ def get_coords_dict(head):
     # print(wcs.wcs_pix2world([0,0]))
     # print(wcs.wcs_pix2world([header['NAXIS1'],header['NAXIS2']]))
     angsep = p1.separation(p2).to(u.arcsec)
-    pxsep = np.sqrt( (header['NAXIS2'] - 0) ** 2 + (header['NAXIS1'] - 0) ** 2 )
+    pxsep = np.sqrt((header['NAXIS2'] - 0) ** 2 + (header['NAXIS1'] - 0) ** 2 )
     print('+++++')
     print(angsep)
     print(pxsep)
