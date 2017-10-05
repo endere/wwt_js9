@@ -116,7 +116,7 @@ def get_coords_dict(head):
     print(angsep)
     print(pxsep)
     print(angsep / pxsep)
-
+    print(float(angsep/pxsep))
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
