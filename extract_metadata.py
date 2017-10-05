@@ -115,8 +115,7 @@ def get_coords_dict(head):
     print('+++++')
     print(angsep)
     print(pxsep)
-    print(angsep / pxsep)
-    print(float(angsep/pxsep))
+    scale = angsep / pxsep
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
@@ -150,7 +149,7 @@ def get_coords_dict(head):
     # print(test_wcs)
     # print(wcs.to_header())
 
-    reqd['BaseDegreesPerTile'] = proj_plane_pixel_scales(wcs)[0]
+    reqd['BaseDegreesPerTile'] = scale
     # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
     # request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
