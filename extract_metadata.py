@@ -134,7 +134,7 @@ def get_coords_dict(head):
     averageDec = (p1.dec.value + p2.dec.value) / 2
     deltaRA = (((p2.ra - p1.ra) * np.cos(averageDec.to(u.radians)))).to(u.arcsec)
     deltaDec = ((p2.dec - p1.dec)).to(u.arcsec)
-    pixelSep = np.sqrt(header['NAXIS1'] ** 2 + header['NAXIS2'] ** 2
+    pixelSep = np.sqrt(header['NAXIS1'] ** 2 + header['NAXIS2'] ** 2)
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
     print('---')
     scale = angularSep / pixelSep
