@@ -144,6 +144,7 @@ def get_coords_dict(head):
     scale = angsep / pxsep
     print(wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)[1][0])
     print(wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1))
+    print('look over here!')
 
     reqd['Rotation'] = -_calculate_rotation_angle('icrs', header)
 
