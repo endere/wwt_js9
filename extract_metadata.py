@@ -102,8 +102,9 @@ def get_coords_dict(head):
     print(header['highestPoint'])
     p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
     p2 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
-    print(WCS.wcs_pix2world(0,0))
-    print(WCS.wcs_pix2world(header['NAXIS1'],header['NAXIS2']))
+    wcs = WCS(header)
+    print(wcs.wcs_pix2world(0,0))
+    print(wcs.wcs_pix2world(header['NAXIS1'],header['NAXIS2']))
     angsep = p1.separation(p2).to(u.arcsec)
     # pxsep = np.sqrt( (x2 - x1) ** 2 + (y2 - y1) ** 2 )
     print(angsep)
@@ -136,7 +137,7 @@ def get_coords_dict(head):
 
     reqd['Rotation'] = _calculate_rotation_angle('icrs', header)
 
-    wcs = WCS(header)
+    # wcs = WCS(header)
     # print(test_wcs)
     # print(wcs.to_header())
 
