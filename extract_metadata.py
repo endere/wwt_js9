@@ -116,8 +116,8 @@ def get_coords_dict(head):
     print(angsep)
     print(pxsep)
     scale = angsep / pxsep
-    print(wcs.wcs_world2pix(header['lowestPoint'], 1))
-    print(wcs.wcs_world2pix(header['highestPoint'], 1))
+    print(wcs.wcs_world2pix(header['lowestPoint'].split(' '), 1))
+    print(wcs.all_world2pix(header['highestPoint'].split(' '), 1))
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
