@@ -30,7 +30,7 @@
          BandPass="Visible" 
          Url="http://wwt-js9-server.herokuapp.com/" 
          TileLevels="1" 
-         WidthFactor="1" 
+         WidthFactor="4" 
          Sparse="True" 
          Rotation="0" 
          QuadTreeMap="" 
