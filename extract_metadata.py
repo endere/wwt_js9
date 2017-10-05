@@ -103,11 +103,20 @@ def get_coords_dict(head):
     p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
     p2 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
     wcs = WCS(header)
-    print(wcs.wcs_pix2world([0,0]))
-    print(wcs.wcs_pix2world([header['NAXIS1'],header['NAXIS2']]))
+    print(p1)
+    print(p2)
+    print(header['NAXIS1'])
+    print(header['NAXIS2'])
+
+    # print(wcs.wcs_pix2world([0,0]))
+    # print(wcs.wcs_pix2world([header['NAXIS1'],header['NAXIS2']]))
     angsep = p1.separation(p2).to(u.arcsec)
-    # pxsep = np.sqrt( (x2 - x1) ** 2 + (y2 - y1) ** 2 )
+    pxsep = np.sqrt( (header['NAXIS2'] - 0) ** 2 + (header['NAXIS1'] - 0) ** 2 )
+    print('+++++')
     print(angsep)
+    print(pxsep)
+    print(angsep / pxsep)
+
     try:
         ra_str = header['RA']
         dec_str = header['DEC']
