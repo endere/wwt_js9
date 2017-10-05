@@ -137,13 +137,13 @@ def get_coords_dict(head):
     # print(wcs.wcs_pix2world([0,0]))
     # print(wcs.wcs_pix2world([header['NAXIS1'],header['NAXIS2']]))
     angsep = p1.separation(p2).to(u.arcsec)
-    pxsep = np.sqrt((header['NAXIS2'] - 0) ** 2 + (header['NAXIS1'] - 0) ** 2 )
+    coordOne = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
+    coordTwo = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
+    pxsep = np.sqrt((coordTwo[0] - coordOne[0]) ** 2 + (coordTwo[1] - coordOne[1]) ** 2 )
     print('+++++')
     print(angsep)
     print(pxsep)
     scale = angsep / pxsep
-    print(wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)[0])
-    print(wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1))
     print('look over here!')
 
     reqd['Rotation'] = -_calculate_rotation_angle('icrs', header)
