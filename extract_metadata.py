@@ -100,8 +100,8 @@ def get_coords_dict(head):
     reqd['y'] = header['CRPIX2']
     print(header['lowestPoint'])
     print(header['highestPoint'])
-    p1 = SkyCoord(header['lowestPoint'])
-    p2 = SkyCoord(header['highestPoint'])
+    p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
+    p2 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
     angsep = p1.separation(p2).to(u.arcsec) 
     print(angsep)
     try:
