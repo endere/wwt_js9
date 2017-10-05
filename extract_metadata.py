@@ -96,10 +96,8 @@ def get_coords_dict(head):
     # print(type(header2))
 
     reqd = {}
-    # reqd['x'] = header['CRPIX1']
-    # reqd['y'] = header['CRPIX2']
-    reqd['x'] = header['NAXIS1'] /2
-    reqd['y'] = header['NAXIS2'] /2
+    reqd['x'] = header['CRPIX1']
+    reqd['y'] = header['CRPIX2']
     print(header['lowestPoint'])
     print(header['highestPoint'])
     p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
