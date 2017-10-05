@@ -149,7 +149,7 @@ def get_coords_dict(head):
     # print(test_wcs)
     # print(wcs.to_header())
 
-    reqd['BaseDegreesPerTile'] = scale.value * 2
+    reqd['BaseDegreesPerTile'] = (scale.value * 2) /10
     # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
     # request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
