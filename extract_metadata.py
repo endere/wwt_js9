@@ -99,31 +99,12 @@ def get_coords_dict(head):
     reqd['x'] = header['CRPIX1']
     reqd['y'] = header['CRPIX2']
     try:
-        ra_str = header['RA']
-        dec_str = header['DEC']
-        coord = SkyCoord('{} {}'.format(ra_str, dec_str), unit=(u.hourangle, u.deg))
-        print('----------------------------')
-
-        print(coord)
-        print(type(coord))
-        print(ra_str)
-        print(dec_str)
-        reqd['RA'] = coord.ra.value
-        reqd['Dec'] = coord.dec.value
-        print('----------------------------')
-
+        reqd['RA'] = header['CRVAL1']
+        reqd['Dec'] = header['CRVAL2']
     except:
-        try:
-            reqd['RA'] = header['RA_CENT']
-            reqd['Dec'] = header['DEC_CENT']
-        except:
-            try:
-                reqd['RA'] = header['CRVAL1']
-                reqd['Dec'] = header['CRVAL2']
-            except:
-                print('Header does not have the needed header keys')
-                return
-                #TODO: EDIT THIS PART SO IT  STILL RETURNS A DICT
+        print('Header does not have the needed header keys')
+        return
+        #TODO: EDIT THIS PART SO IT  STILL RETURNS A DICT
     # print(header['lowestPoint'])
     # print(header['highestPoint'])
     wcs = WCS(header)
