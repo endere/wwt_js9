@@ -28,7 +28,7 @@
          Generic="False" 
          DataSetType="Sky" 
          BandPass="Visible" 
-         Url="http://wwt-js9-server.herokuapp.com/" 
+         Url="http://images.ipac.caltech.edu/eso/eso1731e/eso_eso1731e_1600.jpg" 
          TileLevels="1" 
          WidthFactor="2" 
          Sparse="True" 
