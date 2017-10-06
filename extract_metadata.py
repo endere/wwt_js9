@@ -136,7 +136,7 @@ def get_coords_dict(head):
     averageDec = (p1.dec.value + p2.dec.value) / 2
     print('averagedec')
     print(averageDec)
-    deltaRA = ((p2.ra.value - p1.ra.value) * np.cos(averageDec * (np.pi/180))) * 3600 * 15
+    deltaRA = ((p2.ra.value - p1.ra.value) * np.cos(averageDec * (np.pi/180))) * 3600
     print('deltara')
     print(deltaRA)
     deltaDec = (p2.dec.value - p1.dec.value) * 3600
