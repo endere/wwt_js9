@@ -126,50 +126,50 @@ def get_coords_dict(head):
                 #TODO: EDIT THIS PART SO IT  STILL RETURNS A DICT
     # print(header['lowestPoint'])
     # print(header['highestPoint'])
-    # wcs = WCS(header)
+    wcs = WCS(header)
     p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
     p2 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
-    # print(p1, p2)
-    # xy1 = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
-    # xy2 = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
-    # print(xy1, xy2)
-    # averageDec = (p1.dec.value + p2.dec.value) / 2
-    # print('averagedec')
-    # print(averageDec)
-    # deltaRA = ((p2.ra.value - p1.ra.value) * np.cos(averageDec * (np.pi/180))) * 3600
-    # print('deltara')
-    # print(deltaRA)
-    # deltaDec = (p2.dec.value - p1.dec.value) * 3600
-    # print('deltadec')
-    # print(deltaDec)
-    # pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1]) ** 2)
-    # print('pixelsep')
-    # print(pixelSep)
-    # angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
-    # print('angularsep')
-    # print(angularSep)
-    # print('---')
-    # scale = angularSep / pixelSep
-    # print(scale)
-    # print('---')
+    print(p1, p2)
+    xy1 = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
+    xy2 = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
+    print(xy1, xy2)
+    averageDec = (p1.dec.value + p2.dec.value) / 2
+    print('averagedec')
+    print(averageDec)
+    deltaRA = ((p2.ra.value - p1.ra.value) * np.cos(averageDec * (np.pi/180))) * 3600
+    print('deltara')
+    print(deltaRA)
+    deltaDec = (p2.dec.value - p1.dec.value) * 3600
+    print('deltadec')
+    print(deltaDec)
+    pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1]) ** 2)
+    print('pixelsep')
+    print(pixelSep)
+    angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
+    print('angularsep')
+    print(angularSep)
+    print('---')
+    scale = angularSep / pixelSep
+    print(scale)
+    print('---')
 
     # wcs = WCS(header)
-    print(p1)
-    print(p2)
-    print(header['NAXIS1'])
-    print(header['NAXIS2'])
+    # print(p1)
+    # print(p2)
+    # print(header['NAXIS1'])
+    # print(header['NAXIS2'])
 
-    # print(wcs.wcs_pix2world([0,0]))
-    # print(wcs.wcs_pix2world([header['NAXIS1'],header['NAXIS2']]))
-    angsep = p1.separation(p2).to(u.arcsec)
-    # coordOne = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
-    # coordTwo = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
-    pxsep = np.sqrt(header['NAXIS1'] ** 2 + header['NAXIS2'] ** 2 )
-    print('+++++')
-    print(angsep)
-    print(pxsep)
-    scale = angsep / pxsep
-    print('look over here!')
+    # # print(wcs.wcs_pix2world([0,0]))
+    # # print(wcs.wcs_pix2world([header['NAXIS1'],header['NAXIS2']]))
+    # angsep = p1.separation(p2).to(u.arcsec)
+    # # coordOne = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
+    # # coordTwo = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
+    # pxsep = np.sqrt(header['NAXIS1'] ** 2 + header['NAXIS2'] ** 2 )
+    # print('+++++')
+    # print(angsep)
+    # print(pxsep)
+    # scale = angsep / pxsep
+    # print('look over here!')
 
     reqd['Rotation'] = _calculate_rotation_angle('icrs', header)
 
@@ -177,7 +177,7 @@ def get_coords_dict(head):
     # print(test_wcs)
     # print(wcs.to_header())
 
-    reqd['BaseDegreesPerTile'] = scale.value
+    reqd['BaseDegreesPerTile'] = scale
     # reqd['name'] = os.path.split(filename)[0]
     # print(reqd)
     # request = 'ra={ra}&dec={dec}&x={x}&y={y}&rotation={rotation}&Scale={scale}'.format(**reqd)
