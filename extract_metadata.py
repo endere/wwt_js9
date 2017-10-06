@@ -127,11 +127,11 @@ def get_coords_dict(head):
     # print(header['lowestPoint'])
     # print(header['highestPoint'])
     wcs = WCS(header)
-    p2 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
-    p1 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
+    p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
+    p2 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
     print(p1, p2)
-    xy2 = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
-    xy1 = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
+    xy1 = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
+    xy2 = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
     print(xy1, xy2)
     averageDec = (p1.dec.value + p2.dec.value) / 2
     print('averagedec')
@@ -142,7 +142,7 @@ def get_coords_dict(head):
     deltaDec = (p2.dec.value - p1.dec.value) * 3600
     print('deltadec')
     print(deltaDec)
-    pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1])) ** 2
+    pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1])  ** 2)
     print('pixelsep')
     print(pixelSep)
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
