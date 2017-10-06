@@ -137,7 +137,7 @@ def get_coords_dict(head):
     pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1])) ** 2
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
     print('---')
-    scale = angularSep / pixelSep
+    scale = (angularSep / pixelSep) * 10
     print(scale)
     print('---')
 
