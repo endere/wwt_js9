@@ -134,10 +134,20 @@ def get_coords_dict(head):
     xy2 = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
     print(xy1, xy2)
     averageDec = (p1.dec.value + p2.dec.value) / 2
+    print('averagedec')
+    print(averageDec)
     deltaRA = ((p2.ra.value - p1.ra.value) * np.cos(averageDec * (np.pi/180))) * 3600 * 15
+    print('deltara')
+    print(deltaRA)
     deltaDec = (p2.dec.value - p1.dec.value) * 3600
+    print('deltadec')
+    print(deltaDec)
     pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1])) ** 2
+    print('pixelsep')
+    print(pixelSep)
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
+    print('angularsep')
+    print(angularSep)
     print('---')
     scale = angularSep / pixelSep
     print(scale)
