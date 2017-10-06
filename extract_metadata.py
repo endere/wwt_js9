@@ -142,7 +142,7 @@ def get_coords_dict(head):
     deltaDec = (p2.dec.value - p1.dec.value) * 3600
     print('deltadec')
     print(deltaDec)
-    pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1])  ** 2)
+    pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1]) ** 2)
     print('pixelsep')
     print(pixelSep)
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
@@ -171,7 +171,7 @@ def get_coords_dict(head):
     # scale = angsep / pxsep
     # print('look over here!')
 
-    reqd['Rotation'] = -_calculate_rotation_angle('icrs', header)
+    reqd['Rotation'] = _calculate_rotation_angle('icrs', header)
 
     # wcs = WCS(header)
     # print(test_wcs)
