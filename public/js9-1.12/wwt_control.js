@@ -31,7 +31,7 @@ function Goto(coordinates) {
     var wwt = initialize();
     setTimeout(function(){
         wwt.setForegroundImageByName('Stored Image');
-        wwt.gotoRaDecZoom(parseFloat(coordinates['CenterX']), parseFloat(coordinates['CenterY']), 0.2, false);
+        wwt.gotoRaDecZoom(parseFloat(coordinates['CenterX']), parseFloat(coordinates['CenterY']), 1, false);
     }, 1000);
 
     }
