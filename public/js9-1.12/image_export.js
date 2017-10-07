@@ -4,7 +4,7 @@ JS9.Load = function(url, opts){
     setTimeout(function(){
         JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
         JS9.SetZoom(1);
-    }, 40);
+    }, 100);
 
 }
 
