@@ -1,5 +1,12 @@
+JS9.resizeOnLoad = JS9.Load;
+JS9.Load = function(url, opts){
+    JS9.resizeOnLoad(url, opts);
+    setTimeout(function(){
+        JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
+        JS9.SetZoom(1);
+    }, 40);
 
-
+}
 
 JS9.Image.prototype.getExportURL = function(factor, width, height){
     //Edited save file code from JS9
@@ -54,6 +61,7 @@ JS9.Image.prototype.getExportURL = function(factor, width, height){
 
 
 $(document).ready(function(){
+    console.log(JS9.OpenFileMenu());
     $('#submit').click(function(event){
         event.preventDefault();
         // console.log(JS9.GetImageData('base64'));
@@ -99,21 +107,19 @@ $(document).ready(function(){
         head = JS9.GetImageData('array').header;
         head.lowestPoint = JS9.PixToWCS(0,0).str.replace('+', '').slice(0, -4);
         head.highestPoint = JS9.PixToWCS(JS9.GetImageData().width, JS9.GetImageData().height).str.replace('+', '').slice(0, -4);
-        console.log(head);
-        flaskRequest([JS9.GetImage().getExportURL(2, JS9.GetImageData().width, JS9.GetImageData().height), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], success);
+        // JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
+        // JS9.SetZoom(1);
+        flaskRequest([JS9.GetImage().getExportURL(2, JS9.GetImageData().width/2, JS9.GetImageData().height/2), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], success);
     })
 });
 
 $(document).ready(function(){
     $('#viewInwwt').click(function(event){
         event.preventDefault();
-        JS9.SetZoom('toFit');
         head = JS9.GetImageData('array').header;
         head.lowestPoint = JS9.PixToWCS(0,0).str.replace('+', '').slice(0, -4);
         head.highestPoint = JS9.PixToWCS(JS9.GetImageData().width, JS9.GetImageData().height).str.replace('+', '').slice(0, -4);
         console.log(head);
-        JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
-        JS9.SetZoom(1);
         flaskRequest([JS9.GetImage().getExportURL(1, JS9.GetImageData().width, JS9.GetImageData().height), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], viewImageRequest);
     })
 });
