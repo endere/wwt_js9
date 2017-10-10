@@ -8,11 +8,9 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
-        address = request.remote_addr
+        address = request.remote_addr.replace('.', '')
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
-        print(address)
-        print(address.replace('.', ''))
         app.stored_image = open("{}.png".format(address), "wb") ## changed from image.png
         app.stored_image.write(url_data)
         app.stored_image.close()
@@ -25,6 +23,7 @@ def image_storage():
         edit_wtml(wtml_dict)
         wtml_dict['x'] = reqd['x']
         wtml_dict['y'] = reqd['y']
+        wtml_dict['address'] = address
         return json.dumps(wtml_dict)
     else:
         return send_file('saved.png', mimetype='image/png')
@@ -36,7 +35,6 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    print('here we are!!')
     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
 
 @app.route('/images.wtml', methods=['GET'])
