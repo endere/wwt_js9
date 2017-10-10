@@ -94,14 +94,7 @@ $(document).ready(function(){
         // flaskRequest([JS9.GetImage().getExportURL(2), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], viewImageRequest);
         //test code, delete ++++++++++++++++++++++
 
-        console.log(JS9.GetZoom());
-        console.log(JS9.GetPan());
-        console.log(JS9.GetScale());
 
-        console.log(JS9.SetZoom('toFit'));
-        console.log(JS9.GetPan());
-        console.log(JS9.GetZoom());
-        console.log(JS9.GetScale());
 
         //keeping this code safe --------------------------------------------------------
         head = JS9.GetImageData('array').header;

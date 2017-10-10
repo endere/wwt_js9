@@ -8,7 +8,6 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
-        print(request.data)
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
         app.stored_image = open("saved.png", "wb")
@@ -20,12 +19,9 @@ def image_storage():
             key = i[:i.index(b'=')].decode('utf-8')
             value = i[i.index(b'=') + 1:].decode('utf-8')
             wtml_dict[key] = value if value != '' else reqd[key]
-        print('here is the wtml dict')
-        print(wtml_dict)
         edit_wtml(wtml_dict)
         wtml_dict['x'] = reqd['x']
         wtml_dict['y'] = reqd['y']
-        # edit_wtml({'Dec': split_data[1][4:], 'RA': split_data[2][3:], 'Rotation': split_data[3][9:], 'BaseDegreesPerTile': split_data[4][19:]})
         return json.dumps(wtml_dict)
     else:
         return send_file('saved.png', mimetype='image/png')
@@ -39,16 +35,6 @@ def image_return():
 def wtml_return():
     return send_file('images.wtml')
 
-
-# @app.route('/RA', methods=['GET'])
-# def get_RA():
-#         return send_file('public/js9-1.12/WWT.html')
-
-
-# @app.route('/images2.wtml', methods=['GET'])
-# def second_wtml_return():
-#     return send_file('images.wtml')
-
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
         return send_file('public/js9-1.12/WWT.html')
@@ -57,13 +43,6 @@ def wwt_js9_home():
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
-
-
-# @app.route('/header', methods=['POST'])
-# def headerParse():
-#     # extract_metadata.viewinwwt(request.data.decode('utf-8'))
-#     print(extract_metadata.viewinwwt(json.loads(request.data.decode('utf-8'))))
-#     return 'success'
 
 def edit_wtml(dictionary):
     dictionary['CenterX'] = dictionary['RA']
@@ -81,4 +60,3 @@ def edit_wtml(dictionary):
 
 if __name__ == '__main__':
     app.run()
-    # edit_wtml({'RA': b'1000', 'Dec': b'50'})
