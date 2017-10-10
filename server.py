@@ -33,7 +33,7 @@ def image_return():
     return send_file('saved.png', mimetype='image/png', cache_timeout=1)
 
 @app.route('/<address>.png', methods=['GET'])
-def image_return(address):
+def unique_image_return(address):
     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
 
 @app.route('/images.wtml', methods=['GET'])
