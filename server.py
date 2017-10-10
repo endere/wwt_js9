@@ -7,12 +7,11 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
-    print(request.remote_addr)
-    print(type(request.remote_addr))
     if request.method == 'POST':
+        address = request.remote_addr
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
-        app.stored_image = open("saved.png", "wb")
+        app.stored_image = open("{}.png".format(address), "wb") ## changed from image.png
         app.stored_image.write(url_data)
         app.stored_image.close()
         reqd = extract_metadata.get_coords_dict(json.loads(split_data[5][7:].decode('utf-8')))
@@ -27,11 +26,15 @@ def image_storage():
         return json.dumps(wtml_dict)
     else:
         return send_file('saved.png', mimetype='image/png')
-#
+
 
 @app.route('/image.png', methods=['GET'])
 def image_return():
     return send_file('saved.png', mimetype='image/png', cache_timeout=1)
+
+@app.route('/<address>.png', methods=['GET'])
+def image_return(address):
+    return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
@@ -40,7 +43,6 @@ def wtml_return():
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
         return send_file('public/js9-1.12/WWT.html')
-
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
