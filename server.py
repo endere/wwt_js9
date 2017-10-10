@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
-    print(request)
+    print(request.remote_addr)
     if request.method == 'POST':
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
