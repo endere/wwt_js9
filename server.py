@@ -34,6 +34,7 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
+    print('here we are!!')
     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
 
 @app.route('/images.wtml', methods=['GET'])
