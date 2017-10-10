@@ -98,6 +98,6 @@ def get_coords_dict(head):
     pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1]) ** 2)
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
     scale = angularSep / pixelSep
-    reqd['Rotation'] = _calculate_rotation_angle('icrs', header) + 180
+    reqd['Rotation'] = _calculate_rotation_angle('icrs', header) - 180
     reqd['BaseDegreesPerTile'] = scale
     return reqd
