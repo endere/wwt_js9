@@ -11,6 +11,8 @@ def image_storage():
         address = request.remote_addr
         split_data = request.data.split(b'&')
         url_data = base64.b64decode(split_data[0][26:])
+        print(address)
+        print(address.replace('.', ''))
         app.stored_image = open("{}.png".format(address), "wb") ## changed from image.png
         app.stored_image.write(url_data)
         app.stored_image.close()
