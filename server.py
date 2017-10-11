@@ -44,7 +44,6 @@ def unique_image_return(address):
         def remove_file(response):
             os.remove('{}.wtml'.format(address))
             os.remove('{}.png'.format(address))
-            print('ostensibly working')
             return response
 
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
