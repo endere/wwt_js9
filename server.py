@@ -41,7 +41,7 @@ def image_return():
 def unique_image_return(address):
     try:
         def generate():
-            with open('{}.png'.format(address)) as f:
+            with '{}.png'.format(address) as f:
                 yield f
 
             os.remove('{}.wtml'.format(address))
