@@ -42,8 +42,9 @@ def unique_image_return(address):
         @after_this_request
         def remove_file(response):
             try:
-                os.remove('{}.wtml'.format(address))
-                os.remove('{}.png'.format(address))
+                print('here')
+                # os.remove('{}.wtml'.format(address))
+                # os.remove('{}.png'.format(address))
             except:
                 print('file not found')
             return response
