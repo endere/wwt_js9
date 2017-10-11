@@ -1,10 +1,19 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, g
 import base64
 import extract_metadata
 import json
 import os
 app = Flask(__name__)
+
+
+
+def after_this_request(f):
+    if not hasattr(g, 'after_request_callbacks'):
+        g.after_request_callbacks = []
+    g.after_request_callbacks.append(f)
+    return f
+
 
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
@@ -37,6 +46,11 @@ def image_return():
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
     try:
+        @after_this_request
+        def delete_image_and_wtml(address):
+            os.remove('{}.wtml'.format(address))
+            os.remove('{}.png'.format(address))
+            return 'success'
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except FileNotFoundError:
         return 'file not found'
