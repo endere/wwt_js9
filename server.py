@@ -41,14 +41,14 @@ def image_return():
 def unique_image_return(address):
     try:
         def generate():
-            with '{}.png'.format(address) as f:
+            with open('{}.png'.format(address)) as f:
                 yield f
 
             os.remove('{}.wtml'.format(address))
             os.remove('{}.png'.format(address))
         # r = app.response_class(generate(), mimetype='image/png', cache_timeout=1)
         # r.headers.set('Content-Disposition', "attachment", filename='{}.png'.format(address))
-        return send_file(generate(), mimetype='image/png', cache_timeout=1)
+        return send_file(next(generate()), mimetype='image/png', cache_timeout=1)
     except FileNotFoundError:
         return 'file not found'
 
