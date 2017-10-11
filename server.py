@@ -41,6 +41,10 @@ def unique_image_return(address):
 def wtml_return():
     return send_file('images.wtml')
 
+@app.route('/<address>.wtml', methods=['GET'])
+def unique_wtml_return(address):
+    return send_file('{}.wtml'.format(address))
+
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
         return send_file('public/js9-1.12/WWT.html')
