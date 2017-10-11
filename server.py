@@ -50,6 +50,7 @@ def unique_image_return(address):
         def delete_image_and_wtml(address):
             os.remove('{}.wtml'.format(address))
             os.remove('{}.png'.format(address))
+            print('here')
             return 'success'
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except FileNotFoundError:
