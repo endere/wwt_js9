@@ -4,7 +4,7 @@ JS9.Load = function(url, opts){
     setTimeout(function(){
         JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
         JS9.SetZoom(1);
-    }, 40);
+    }, 100);
 
 }
 
@@ -54,7 +54,10 @@ $(document).ready(function(){
 
 function viewImageRequest(response){
     parsedResp = JSON.parse(response);
-    window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/image.png`);
+    console.log(parsedResp);
+    window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
+    deleteAddress(parsedResp['address']);
+    // window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
 }
 
 function flaskRequest(attatchments, callback) {
@@ -67,9 +70,17 @@ function flaskRequest(attatchments, callback) {
         contentType: false,
         data: 'url=' + attatchments[0] + '&Dec=' + attatchments[1] + '&RA=' + attatchments[2] + '&Rotation=' + attatchments[3] + '&BaseDegreesPerTile=' + attatchments[4] + '&Header=' + json
     }).done(callback).fail(failed);
-
 }
 
+function deleteAddress(address) {
+    $.ajax({
+        type: 'DELETE',
+        url: `http://wwt-js9-server.herokuapp.com/delete/${address}`,
+        crossDomain: true,
+        processData: false,
+        contentType: false,
+    })
+}
 
 function failed(response){
     console.log(response)
