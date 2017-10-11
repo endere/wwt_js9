@@ -39,16 +39,16 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    try:
         @after_this_request
         def remove_file(response):
-            os.remove('{}.wtml'.format(address))
-            os.remove('{}.png'.format(address))
+            try:
+                os.remove('{}.wtml'.format(address))
+                os.remove('{}.png'.format(address))
+            except FileNotFoundError:
+                print('file not found')
             return response
 
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
-    except FileNotFoundError:
-        return 'file not found'
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
