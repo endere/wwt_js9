@@ -3,6 +3,7 @@ from flask import Flask, request, send_file
 import base64
 import extract_metadata
 import json
+import os
 app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET'])
@@ -45,9 +46,15 @@ def wtml_return():
 def unique_wtml_return(address):
     return send_file('{}.wtml'.format(address))
 
+@app.route('/delete/<address>', methods=['GET'])
+def delete_image_and_wtml(address):
+    os.remove('{}.wtml'.format(address))
+    os.remove('{}.png'.format(address))
+    return 'success'
+
 @app.route('/home', methods=['GET'])
 def wwt_js9_home():
-        return send_file('public/js9-1.12/WWT.html')
+    return send_file('public/js9-1.12/WWT.html')
 
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
