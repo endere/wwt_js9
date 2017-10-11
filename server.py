@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, after_this_request
 import base64
 import extract_metadata
 import json
@@ -40,15 +40,15 @@ def image_return():
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
     try:
-        def generate():
-            with open('{}.png'.format(address)) as f:
-                yield f
+        handle = open('{}.png'.format(address), 'r')
 
+        @after_this_request
+        def remove_file(response):
             os.remove('{}.wtml'.format(address))
             os.remove('{}.png'.format(address))
-        # r = app.response_class(generate(), mimetype='image/png', cache_timeout=1)
-        # r.headers.set('Content-Disposition', "attachment", filename='{}.png'.format(address))
-        return send_file(next(generate()), mimetype='image/png', cache_timeout=1)
+            print('ostensibly working')
+            return response
+        return send_file(handle, cache_timeout=1)
     except FileNotFoundError:
         return 'file not found'
 
