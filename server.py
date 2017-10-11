@@ -20,7 +20,7 @@ def image_storage():
             key = i[:i.index(b'=')].decode('utf-8')
             value = i[i.index(b'=') + 1:].decode('utf-8')
             wtml_dict[key] = value if value != '' else reqd[key]
-        edit_wtml(wtml_dict)
+        edit_wtml(wtml_dict, address)
         wtml_dict['x'] = reqd['x']
         wtml_dict['y'] = reqd['y']
         wtml_dict['address'] = address
@@ -49,10 +49,11 @@ def wwt_js9_home():
 def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
 
-def edit_wtml(dictionary):
+def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
     dictionary['CenterY'] = dictionary['Dec']
-    with open('template.wtml', 'r') as old, open('images.wtml', 'w') as new:
+    dictionary['Url'] = 'http://wwt-js9-server.herokuapp.com/{}.png'.format(address)
+    with open('template.wtml', 'r') as old, open('{}.wtml'.format(address), 'w') as new:
         for line in old.readlines():
             try:
                 attribute = list(filter(lambda x: x in line, list(dictionary.keys())))[0]
