@@ -53,7 +53,7 @@ def wtml_return():
 def unique_wtml_return(address):
     return send_file('{}.wtml'.format(address))
 
-@app.route('/delete/<address>', methods=['GET'])
+@app.route('/delete/<address>', methods=['DELETE'])
 def delete_image_and_wtml(address):
     os.remove('{}.wtml'.format(address))
     os.remove('{}.png'.format(address))
