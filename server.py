@@ -68,9 +68,9 @@ def give_file(file):
 
 
 
-@app.route('/delete/wordpress', methods=['GET'])
+@app.route('/wordpress', methods=['GET'])
 def wordpress():
-    return render_template('public/wordpress/index.php')
+    return send_file('public/wordpress/index.php')
 
 
 
