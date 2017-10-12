@@ -50,7 +50,7 @@ def unique_image_return(address):
     #     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     # except:
     #     return 'File not found'
-
+###
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
     return send_file('images.wtml')
