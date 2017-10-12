@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from flask import Flask, request, send_file, Response
+from pathlib import Path
 import base64
 import extract_metadata
 import json
@@ -40,7 +41,7 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    if '{}.png'.format(address).exists():
+    if Path('{}.png'.format(address)).exists():
         with open('{}.png'.format(address), 'rb') as f:
             data = f.read()
         resp = Response(data, mimetype='image/png')
