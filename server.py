@@ -4,6 +4,7 @@ import base64
 import extract_metadata
 import json
 import os
+import subprocess
 app = Flask(__name__)
 
 
@@ -70,8 +71,8 @@ def give_file(file):
 
 @app.route('/wordpress', methods=['GET'])
 def wordpress():
-    # php_output = subprocess.check_output(["php", "public/wordpress/index.php"])
-    return send_file('public/wordpress/index.php')
+    php_output = subprocess.check_output(["php", "public/wordpress/index.php"])
+    return php_output
 
 
 
