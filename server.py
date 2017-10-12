@@ -4,7 +4,7 @@ import base64
 import extract_metadata
 import json
 import os
-import subprocess
+import time
 app = Flask(__name__)
 
 
@@ -55,6 +55,7 @@ def unique_wtml_return(address):
 
 @app.route('/delete/<address>', methods=['GET'])
 def delete_image_and_wtml(address):
+    time.sleep(5)
     os.remove('{}.wtml'.format(address))
     os.remove('{}.png'.format(address))
     return 'success'
