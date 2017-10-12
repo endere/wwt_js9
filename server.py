@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file, after_this_request
+from flask import Flask, request, send_file, after_this_request, render_template
 import base64
 import extract_metadata
 import json
@@ -65,6 +65,26 @@ def wwt_js9_home():
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
+
+
+
+@app.route('/delete/wordpress', methods=['GET'])
+def wordpress():
+    return render_template('public/wordpress/index.php')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
