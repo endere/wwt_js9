@@ -42,7 +42,7 @@ def image_return():
 def unique_image_return(address):
     with open('{}.png'.format(address), 'rb') as f:
         data = f.read()
-    resp = Response(data, mimetype='image/png', cache_timeout=1)
+    resp = Response(data, mimetype='image/png')
     os.remove('{}.wtml'.format(address))
     os.remove('{}.png'.format(address))
     return resp
