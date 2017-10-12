@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file, after_this_request, render_template
+from flask import Flask, request, send_file, Response
 import base64
 import extract_metadata
 import json
@@ -40,10 +40,16 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    try:
-        return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
-    except:
-        return 'File not found'
+    with open('{}.png'.format(address), 'rb') as f:
+        data = f.read()
+    resp = Response(data, mimetype='image/png', cache_timeout=1)
+    os.remove('{}.wtml'.format(address))
+    os.remove('{}.png'.format(address))
+    return resp
+    # try:
+    #     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
+    # except:
+    #     return 'File not found'
 
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
