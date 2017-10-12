@@ -49,7 +49,7 @@ def unique_image_return(address):
         os.remove('{}.png'.format(address))
         return resp
     else:
-        return Response()
+        return Response('', mimetype='plaintext')
     # try:
     #     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     # except:
