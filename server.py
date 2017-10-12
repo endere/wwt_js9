@@ -1,6 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file, Response
-from pathlib import Path
+from flask import Flask, request, send_file, after_this_request, render_template
 import base64
 import extract_metadata
 import json
@@ -41,20 +40,11 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    if Path('{}.png'.format(address)).exists():
-        with open('{}.png'.format(address), 'rb') as f:
-            data = f.read()
-        resp = Response(data, mimetype='image/png')
-        os.remove('{}.wtml'.format(address))
-        os.remove('{}.png'.format(address))
-        return resp
-    else:
-        return Response('', mimetype='plaintext')
-    # try:
-    #     return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
-    # except:
-    #     return 'File not found'
-###
+    try:
+        return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
+    except:
+        return 'File not found'
+
 @app.route('/images.wtml', methods=['GET'])
 def wtml_return():
     return send_file('images.wtml')
@@ -63,7 +53,7 @@ def wtml_return():
 def unique_wtml_return(address):
     return send_file('{}.wtml'.format(address))
 
-@app.route('/delete/<address>', methods=['DELETE'])
+@app.route('/delete/<address>', methods=['GET'])
 def delete_image_and_wtml(address):
     os.remove('{}.wtml'.format(address))
     os.remove('{}.png'.format(address))
@@ -79,12 +69,12 @@ def give_file(file):
 
 
 
-@app.route('/wordpress', methods=['GET'])
-def wordpress():
-    php_output = subprocess.check_output(["php", "public/wordpress/index.php"])
-    print('over heereeeee')
-    print(php_output)
-    return send_file("public/wordpress/index.php")
+# @app.route('/wordpress', methods=['GET'])
+# def wordpress():
+#     php_output = subprocess.check_output(["php", "public/wordpress/index.php"])
+#     print('over heereeeee')
+#     print(php_output)
+#     return send_php_output
 
 
 
