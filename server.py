@@ -46,7 +46,7 @@ def unique_image_return(address):
                 os.remove('{}.wtml'.format(address))
                 os.remove('{}.png'.format(address))
             except:
-                return 'File Not Found'
+                pass
             return response
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except:
