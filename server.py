@@ -4,7 +4,6 @@ import base64
 import extract_metadata
 import json
 import os
-import time
 app = Flask(__name__)
 
 
@@ -44,11 +43,10 @@ def unique_image_return(address):
         @after_this_request
         def remove_file(response):
             try:
-                time.sleep(2)
                 os.remove('{}.wtml'.format(address))
                 os.remove('{}.png'.format(address))
             except:
-                print('file not found')
+                return 'File Not Found'
             return response
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except:
