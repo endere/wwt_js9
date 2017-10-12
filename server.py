@@ -74,7 +74,7 @@ def wordpress():
     php_output = subprocess.check_output(["php", "public/wordpress/index.php"])
     print('over heereeeee')
     print(php_output)
-    return php_output
+    return send_file(php_output)
 
 
 
