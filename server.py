@@ -45,6 +45,7 @@ def unique_image_return(address):
         @after_this_request
         def remove_file(response):
             try:
+                print('over here and waiting')
                 time.sleep(5)
                 os.remove('{}.wtml'.format(address))
                 os.remove('{}.png'.format(address))
