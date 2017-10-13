@@ -40,6 +40,7 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
+    global app
     # print('here is the address!!!')
     # print('-------------------')
     # print(address)
@@ -74,6 +75,7 @@ def unique_wtml_return(address):
 
 @app.route('/delete/<address>', methods=['DELETE'])
 def delete_image_and_wtml(address):
+    global app
     while True:
         print(app.flags)
         if address in app.flags:
