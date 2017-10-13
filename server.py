@@ -6,7 +6,6 @@ import json
 import os
 import time
 app = Flask(__name__)
-app.flags = []
 
 
 
@@ -40,24 +39,18 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    global app
-    # print('here is the address!!!')
-    # print('-------------------')
-    # print(address)
-    # print(request.url)
-    # print(request.host_url)
-
-    # # print(dir(request))
-    # print('-------------------')
+    print(address)
+    print()
     try:
-        # @after_this_request
-        # def remove_file(response):
-        #     try:
-        #         os.remove('{}.wtml'.format(address))
-        #         os.remove('{}.png'.format(address))
-        #     except:
-        #         print('file not found')
-        #     return response
+        @after_this_request
+        def remove_file(response):
+            try:
+                time.sleep(5)
+                os.remove('{}.wtml'.format(address))
+                os.remove('{}.png'.format(address))
+            except:
+                print('file not found')
+            return response
         if address not in app.flags:
             app.flags.append(address)
         print(app.flags)
@@ -75,15 +68,8 @@ def unique_wtml_return(address):
 
 @app.route('/delete/<address>', methods=['DELETE'])
 def delete_image_and_wtml(address):
-    global app
-    while True:
-        print(app.flags)
-        if address in app.flags:
-            break
     os.remove('{}.wtml'.format(address))
     os.remove('{}.png'.format(address))
-    print('successfully deleted')
-    print(app.flags)
     return 'success'
 
 @app.route('/home', methods=['GET'])
