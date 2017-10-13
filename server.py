@@ -75,6 +75,7 @@ def unique_wtml_return(address):
 @app.route('/delete/<address>', methods=['DELETE'])
 def delete_image_and_wtml(address):
     while True:
+        print(app.flags)
         if address in app.flags:
             break
     os.remove('{}.wtml'.format(address))
