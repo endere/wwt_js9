@@ -40,6 +40,10 @@ def image_return():
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
+    print('here is the address!!!')
+    print('-------------------')
+    print(address)
+    print('-------------------')
     try:
         @after_this_request
         def remove_file(response):
