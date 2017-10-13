@@ -5,6 +5,7 @@ import extract_metadata
 import json
 import os
 import time
+from threading import Thread
 app = Flask(__name__)
 
 
@@ -42,8 +43,17 @@ def unique_image_return(address):
     print(address)
     print()
     try:
-        @after_this_request
-        def remove_file(response):
+        # @after_this_request
+        # def remove_file(response):
+        #     try:
+        #         print('over here and waiting')
+        #         print('waiting done')
+        #         os.remove('{}.wtml'.format(address))
+        #         os.remove('{}.png'.format(address))
+        #     except:
+        #         print('file not found')
+        #     return response
+        def remove_file():
             try:
                 print('over here and waiting')
                 time.sleep(5)
@@ -52,7 +62,8 @@ def unique_image_return(address):
                 os.remove('{}.png'.format(address))
             except:
                 print('file not found')
-            return response
+        t = Thread(target=remove_file)
+        t.start()
         print('sending file')
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except:
