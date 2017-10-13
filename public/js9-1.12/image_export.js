@@ -54,7 +54,7 @@ $(document).ready(function(){
 
 function viewImageRequest(response){
     parsedResp = JSON.parse(response);
-    console.log('over heereeeeeeee!!!!!')
+    console.log(parsedResp);
     window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
     // deleteAddress(parsedResp['address']);
 }
