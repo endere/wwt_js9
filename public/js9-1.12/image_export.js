@@ -54,8 +54,9 @@ $(document).ready(function(){
 
 function viewImageRequest(response){
     parsedResp = JSON.parse(response);
-    console.log(parsedResp);
+    console.log('over heereeeeeeee!!!!!')
     window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
+    // deleteAddress(parsedResp['address']);
 }
 
 function flaskRequest(attatchments, callback) {
@@ -72,14 +73,17 @@ function flaskRequest(attatchments, callback) {
 
 function deleteAddress(address) {
     $.ajax({
-        type: 'GET',
+        type: 'DELETE',
         url: `http://wwt-js9-server.herokuapp.com/delete/${address}`,
         crossDomain: true,
         processData: false,
         contentType: false,
-    })
+    }).done(finished);
 }
 
+function finished(){
+    console.log('done!!!!!')
+}
 function failed(response){
     console.log(response)
     console.log('failed');
