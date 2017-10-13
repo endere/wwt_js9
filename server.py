@@ -51,9 +51,6 @@ def unique_image_return(address):
             except:
                 print('file not found')
             return response
-        if address not in app.flags:
-            app.flags.append(address)
-        print(app.flags)
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except:
         return send_file('saved.png', mimetype='image/png', cache_timeout=1)
