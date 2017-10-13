@@ -43,8 +43,8 @@ def unique_image_return(address):
     print('here is the address!!!')
     print('-------------------')
     print(address)
-    print(request)
-    print(dir(request))
+    print(request.url_root)
+    # print(dir(request))
     print('-------------------')
     try:
         @after_this_request
