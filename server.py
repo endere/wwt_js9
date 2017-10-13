@@ -43,7 +43,9 @@ def unique_image_return(address):
     print('here is the address!!!')
     print('-------------------')
     print(address)
-    print(request.url_root)
+    print(request.url)
+    print(request.host_url)
+
     # print(dir(request))
     print('-------------------')
     try:
