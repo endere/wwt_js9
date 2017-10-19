@@ -13,23 +13,26 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
-        address = request.remote_addr.replace('.', '')
-        split_data = request.data.split(b'&')
-        url_data = base64.b64decode(split_data[0][26:])
-        app.stored_image = open("{}.png".format(address), "wb") ## changed from image.png
-        app.stored_image.write(url_data)
-        app.stored_image.close()
-        reqd = extract_metadata.get_coords_dict(json.loads(split_data[5][7:].decode('utf-8')))
-        wtml_dict = {}
-        for i in split_data[1:-1]:
-            key = i[:i.index(b'=')].decode('utf-8')
-            value = i[i.index(b'=') + 1:].decode('utf-8')
-            wtml_dict[key] = value if value != '' else reqd[key]
-        edit_wtml(wtml_dict, address)
-        wtml_dict['x'] = reqd['x']
-        wtml_dict['y'] = reqd['y']
-        wtml_dict['address'] = address
-        return json.dumps(wtml_dict)
+        try:
+            address = request.remote_addr.replace('.', '')
+            split_data = request.data.split(b'&')
+            url_data = base64.b64decode(split_data[0][26:])
+            app.stored_image = open("{}.png".format(address), "wb") ## changed from image.png
+            app.stored_image.write(url_data)
+            app.stored_image.close()
+            reqd = extract_metadata.get_coords_dict(json.loads(split_data[5][7:].decode('utf-8')))
+            wtml_dict = {}
+            for i in split_data[1:-1]:
+                key = i[:i.index(b'=')].decode('utf-8')
+                value = i[i.index(b'=') + 1:].decode('utf-8')
+                wtml_dict[key] = value if value != '' else reqd[key]
+            edit_wtml(wtml_dict, address)
+            wtml_dict['x'] = reqd['x']
+            wtml_dict['y'] = reqd['y']
+            wtml_dict['address'] = address
+            return json.dumps(wtml_dict)
+        except Exception:
+            return 'Invalid header.'
     else:
         return send_file('saved.png', mimetype='image/png')
 
