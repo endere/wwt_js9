@@ -34,37 +34,22 @@ def image_storage():
         return send_file('saved.png', mimetype='image/png')
 
 
-@app.route('/image.png', methods=['GET'])
+@app.route('/image.fits', methods=['GET'])
 def image_return():
-    return send_file('saved.png', mimetype='image/png', cache_timeout=1)
+    return send_file('casa.fits', mimetype='image/fits', cache_timeout=1)
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):
-    print(address)
-    print()
     try:
-        # @after_this_request
-        # def remove_file(response):
-        #     try:
-        #         print('over here and waiting')
-        #         print('waiting done')
-        #         os.remove('{}.wtml'.format(address))
-        #         os.remove('{}.png'.format(address))
-        #     except:
-        #         print('file not found')
-        #     return response
         def remove_file():
             try:
-                print('over here and waiting')
                 time.sleep(5)
-                print('waiting done')
                 os.remove('{}.wtml'.format(address))
                 os.remove('{}.png'.format(address))
             except:
-                print('file not found')
+                pass
         t = Thread(target=remove_file)
         t.start()
-        print('sending file')
         return send_file('{}.png'.format(address), mimetype='image/png', cache_timeout=1)
     except:
         return send_file('saved.png', mimetype='image/png', cache_timeout=1)
