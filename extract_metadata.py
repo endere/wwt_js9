@@ -73,8 +73,6 @@ def _calculate_rotation_angle(reg_coordinate_frame, header):
     else:
         return -(north_rot - 90)
 
-public_folder = '/home/AAS/js9_wwt_server/'
-base_url = 'http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?'
 
 def get_coords_dict(head):
     header = fits.header.Header(head)

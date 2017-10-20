@@ -8,8 +8,6 @@ import time
 from threading import Thread
 app = Flask(__name__)
 
-
-
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
     if request.method == 'POST':
@@ -17,7 +15,7 @@ def image_storage():
             address = request.remote_addr.replace('.', '')
             split_data = request.data.split(b'&')
             url_data = base64.b64decode(split_data[0][26:])
-            app.stored_image = open("{}.png".format(address), "wb") ## changed from image.png
+            app.stored_image = open("{}.png".format(address), "wb")
             app.stored_image.write(url_data)
             app.stored_image.close()
             reqd = extract_metadata.get_coords_dict(json.loads(split_data[5][7:].decode('utf-8')))
@@ -78,28 +76,6 @@ def wwt_js9_home():
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
-
-
-
-# @app.route('/wordpress', methods=['GET'])
-# def wordpress():
-#     php_output = subprocess.check_output(["php", "public/wordpress/index.php"])
-#     print('over heereeeee')
-#     print(php_output)
-#     return send_php_output
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 def edit_wtml(dictionary, address):
