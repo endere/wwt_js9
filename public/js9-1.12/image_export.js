@@ -50,7 +50,7 @@ $(document).ready(function(){
         console.log(head);
         flaskRequest([JS9.GetImage().getExportURL(1, JS9.GetImageData().width, JS9.GetImageData().height), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], viewImageRequest);
     })
-    JS9.Load('http://wwt-js9-server.herokuapp.com/image.fits');
+    // JS9.Load('http://wwt-js9-server.herokuapp.com/image.fits');
 });
 
 function viewImageRequest(response){
