@@ -5,6 +5,7 @@ import extract_metadata
 import json
 import os
 import time
+import uuid
 from threading import Thread
 app = Flask(__name__)
 
@@ -12,7 +13,7 @@ app = Flask(__name__)
 def image_storage():
     if request.method == 'POST':
         try:
-            address = request.remote_addr.replace('.', '')
+            address = uuid.uuid4()
             split_data = request.data.split(b'&')
             url_data = base64.b64decode(split_data[0][26:])
             app.stored_image = open("{}.png".format(address), "wb")
