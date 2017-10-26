@@ -13,7 +13,7 @@ app = Flask(__name__)
 def image_storage():
     if request.method == 'POST':
         try:
-            address = uuid.uuid4()
+            address = str(uuid.uuid4())
             split_data = request.data.split(b'&')
             url_data = base64.b64decode(split_data[0][26:])
             app.stored_image = open("{}.png".format(address), "wb")
