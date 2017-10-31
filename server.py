@@ -6,8 +6,11 @@ import json
 import os
 import time
 import uuid
+from flask_cors import CORS
 from threading import Thread
 app = Flask(__name__)
+CORS(app)
+
 
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
@@ -30,7 +33,7 @@ def image_storage():
             wtml_dict['y'] = reqd['y']
             wtml_dict['address'] = address
             return json.dumps(wtml_dict)
-        except Exception:
+        except:
             return 'Invalid header.'
     else:
         return send_file('saved.png', mimetype='image/png')
