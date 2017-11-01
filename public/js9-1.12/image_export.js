@@ -44,10 +44,13 @@ $(document).ready(function(){
     })
     $('#viewInwwt').click(function(event){
         event.preventDefault();
+        try{
         head = JS9.GetImageData('array').header;
         head.lowestPoint = JS9.PixToWCS(0,0).str.replace('+', '').slice(0, -4);
         head.highestPoint = JS9.PixToWCS(JS9.GetImageData().width, JS9.GetImageData().height).str.replace('+', '').slice(0, -4);
-        console.log(head);
+        } catch(TypeError){
+            alert('Please insert a FITS image.');
+        }
         flaskRequest([JS9.GetImage().getExportURL(1, JS9.GetImageData().width, JS9.GetImageData().height), $('#Dec').val(), $('#RA').val(), $('#Rotation').val(), $('#BaseDegreesPerTile').val(), head], viewImageRequest);
     })
     // JS9.Load('http://wwt-js9-server.herokuapp.com/image.fits');
@@ -55,7 +58,7 @@ $(document).ready(function(){
 
 function viewImageRequest(response){
     parsedResp = JSON.parse(response);
-    window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=test&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
+    window.open(`http://www.worldwidetelescope.org/wwtweb/ShowImage.aspx?name=${JS9.GetImage().file}&ra=${parsedResp['RA']}&dec=${parsedResp['Dec']}&x=${parsedResp['x']}&y=${parsedResp['y']}&scale=${parsedResp['BaseDegreesPerTile']}&rotation=${parsedResp['Rotation']}&imageurl=http://wwt-js9-server.herokuapp.com/${parsedResp['address']}.png`);
 }
 
 function flaskRequest(attatchments, callback) {
