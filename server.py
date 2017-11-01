@@ -6,9 +6,10 @@ import json
 import os
 import time
 import uuid
+from flask_cors import CORS
 from threading import Thread
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/', methods=['POST', 'GET'])
 def image_storage():
