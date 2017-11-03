@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file, after_this_request, render_template
+from flask import Flask, request, send_file
 import base64
 import extract_metadata
 import json
