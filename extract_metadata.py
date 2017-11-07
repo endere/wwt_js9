@@ -99,3 +99,5 @@ def get_coords_dict(head):
     reqd['Rotation'] = _calculate_rotation_angle('icrs', header) - 180
     reqd['BaseDegreesPerTile'] = scale
     return reqd
+
+

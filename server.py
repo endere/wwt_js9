@@ -80,6 +80,15 @@ def wwt_js9_home():
 def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
 
+@app.route('/verify', methods=['POST'])
+def verify_fits():
+    print('at the fits verification function!!')
+    print(request.data)
+
+
+
+
+
 
 def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
