@@ -87,10 +87,10 @@ def verify_fits():
     print('---')
     print(request.args)
     print('---')
-
     print(request.form)
     print('---')
     print(request)
+    import pdb; pdb.set_trace()
 
     # print(dir(request))
     return 'success'
