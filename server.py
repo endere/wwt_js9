@@ -21,7 +21,6 @@ def image_storage():
             app.stored_image = open("{}.png".format(address), "wb")
             app.stored_image.write(url_data)
             app.stored_image.close()
-            print(split_data[5][7:])
             reqd = extract_metadata.get_coords_dict(json.loads(split_data[5][7:].decode('utf-8')))
             wtml_dict = {}
             for i in split_data[1:-1]:
@@ -77,6 +76,10 @@ def delete_image_and_wtml(address):
 def wwt_js9_home():
     return send_file('public/js9-1.12/WWT.html')
 
+@app.route('/verification_html', methods=['GET'])
+def verification():
+    return send_file('public/js9-1.12/fits_verification.html')
+
 @app.route('/<file>', methods=['GET'])
 def give_file(file):
     return send_file('public/js9-1.12/{}'.format(file))
@@ -85,12 +88,12 @@ def give_file(file):
 def verify_fits():
     print('at the fits verification function!!')
     print(request.data)
-    print('---')
-    print(request.args)
-    print('---')
-    print(request.form)
-    print('---')
-    print(request)
+    # print('---')
+    # print(request.args)
+    # print('---')
+    # print(request.form)
+    # print('---')
+    # # print(request)
     import pdb; pdb.set_trace()
 
     # print(dir(request))
