@@ -84,6 +84,7 @@ def give_file(file):
 def verify_fits():
     print('at the fits verification function!!')
     print(request.data)
+    return 'success'
 
 
 
