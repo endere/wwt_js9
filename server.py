@@ -83,8 +83,8 @@ def give_file(file):
 @app.route('/verify', methods=['POST'])
 def verify_fits():
     print('at the fits verification function!!')
-    print(json.loads(request.data))
-    print(type(json.loads(request.data)))
+    print(request.data)
+    print(type(request.data))
     return 'success'
 
 
