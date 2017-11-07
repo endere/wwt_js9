@@ -90,6 +90,7 @@ def verify_fits():
 
     print(request.form)
     print('---')
+    print(request)
 
     # print(dir(request))
     return 'success'
