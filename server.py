@@ -85,7 +85,7 @@ def verify_fits():
     print('at the fits verification function!!')
     print(request.data)
     print(type(request.data))
-    print(request)
+    print(dir(request))
     return 'success'
 
 
