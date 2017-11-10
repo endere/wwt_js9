@@ -75,27 +75,50 @@ def _calculate_rotation_angle(reg_coordinate_frame, header):
 
 
 def get_coords_dict(head):
+    """Fills a dictionary of needed header values to view image in WorldWide Telescope.
+    
+    Parameters
+    ----------
+    head : `~astropy.io.fits.Header` instance
+        Header describing the image with lowestPoint and highestPoint cards added.
+
+    Returns
+    -------
+    reqd : dict
+        Dictionary with keys: 
+            x, y: pixel coordinate centers of image
+            RA, dec: spatial coordiate centers of image
+            Rotation: Image rotation measured in degrees E of N
+            BaseDegreesPerTile: image pixel scale in units of arsec / pixel
+    """
     header = fits.header.Header(head)
     reqd = {}
+    
     reqd['x'] = header['CRPIX1']
     reqd['y'] = header['CRPIX2']
+    
     try:
         reqd['RA'] = header['CRVAL1']
         reqd['Dec'] = header['CRVAL2']
     except:
         print('Header does not have the needed header keys')
         return
+    
     wcs = WCS(header)
     p1 = SkyCoord(header['lowestPoint'], unit=(u.hourangle, u.deg))
     p2 = SkyCoord(header['highestPoint'], unit=(u.hourangle, u.deg))
     xy1 = wcs.wcs_world2pix(p1.ra.value, p1.dec.value, 1)
     xy2 = wcs.wcs_world2pix(p2.ra.value, p2.dec.value, 1)
+    
     averageDec = (p1.dec.value + p2.dec.value) / 2
     deltaRA = ((p2.ra.value - p1.ra.value) * np.cos(averageDec * (np.pi/180))) * 3600
     deltaDec = (p2.dec.value - p1.dec.value) * 3600
+    
     pixelSep = np.sqrt((xy1[0] + xy2[0]) ** 2 + (xy1[1] + xy2[1]) ** 2)
     angularSep = np.sqrt(deltaRA ** 2 + deltaDec ** 2)
     scale = angularSep / pixelSep
+    
     reqd['Rotation'] = _calculate_rotation_angle('icrs', header) - 180
     reqd['BaseDegreesPerTile'] = scale
+    
     return reqd
