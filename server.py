@@ -1,5 +1,6 @@
 #!/usr/bin/python
 from flask import Flask, request, send_file
+from werkzeug import secure_filename
 import base64
 import extract_metadata
 import json
@@ -86,21 +87,28 @@ def give_file(file):
 
 @app.route('/verify', methods=['POST'])
 def verify_fits():
-    print('at the fits verification function!!')
-    print(request.data)
-    # print('---')
-    # print(request.args)
-    # print('---')
-    # print(request.form)
-    # print('---')
-    # # print(request)
-    import pdb; pdb.set_trace()
-
-    # print(dir(request))
-    return 'success'
+        f = request.files['file']
+        f.save(secure_filename(f.filename))
+        response = extract_metadata.verify_fits(f.filename)
+        os.remove(f.filename)
+        return response
 
 
+@app.route('/verify/fix', methods=['POST'])
+def fix_fits():
+    f = request.files['file']
+    f.save(secure_filename(f.filename))
+    key = extract_metadata.fix(f.filename)
 
+    def yield_file():
+        with open(key, 'rb') as file:
+            yield from file
+        os.remove(f.filename)
+        os.remove(key)
+
+    r = app.response_class(yield_file(), mimetype='image/fits')
+    r.headers.set('Content-Disposition', 'attachment', filename=f.filename)
+    return r
 
 
 

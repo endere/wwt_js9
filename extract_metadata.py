@@ -1,7 +1,9 @@
 #!/usr/bin/env python
 import os
 import sys
-
+import uuid
+import logging
+import warnings
 import astropy.units as u
 import numpy as np
 
@@ -100,4 +102,41 @@ def get_coords_dict(head):
     reqd['BaseDegreesPerTile'] = scale
     return reqd
 
+
+
+
+def verify_fits(file):
+    key = str(uuid.uuid4())
+    logging.captureWarnings(True)
+    formatter = logging.Formatter('%(asctime)s\t%(levelname)s\t%(message)s')
+    open(key + '.log', 'w')
+    console_handler = logging.FileHandler(key + '.log')
+    console_handler.setLevel(logging.DEBUG)
+    console_handler.setFormatter(formatter)
+    warnings_logger = logging.getLogger("py.warnings")
+    warnings_logger.addHandler(console_handler)
+    try:
+        f = fits.open(file)
+        f.verify()
+        warnings_logger.warning('VerifyWarning: -----below are fixes that the server can make-----warnings.warn(line, VerifyWarning)')
+        f.verify('fix')
+        f.close()
+    except OSError:
+        pass
+    warnings.resetwarnings()
+    warnings_logger.removeHandler(console_handler)
+    to_return = ''
+    for line in open(key + '.log', 'r'):
+        to_return += line
+    os.remove(key + '.log')
+    return to_return
+
+def fix(file):
+    key = str(uuid.uuid4())
+    f = fits.open(file)
+    # f.verify('fix')
+    print(f[0].header)
+    f.writeto(key + '.fits')
+    f.close()
+    return key + '.fits'
 
