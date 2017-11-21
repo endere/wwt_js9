@@ -9,11 +9,12 @@
 </head>
    <body>
    
-      <form action = "http://wwt-js9-server.herokuapp.com/verify/fix" method = "POST" 
-         enctype = "multipart/form-data" id='theForm'>
+      <form id='theForm'>
          <input type = "file" name = "file"/>
          <input type = "submit" id='verify' value='verify' onclick="fixing=false"/>
          <input type = "submit" id='fix' value='fix' onclick="fixing=true" />
+         <div id  = 'headers'></div>
+         <button id='addOrEdit' type="button">Add/edit header</button>
       </form>
 
    </body>
