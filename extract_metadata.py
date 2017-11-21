@@ -105,7 +105,7 @@ def get_coords_dict(head):
 
 
 
-def verify_fits(file):
+def verify_fits(file, header_list):
     key = str(uuid.uuid4())
     logging.captureWarnings(True)
     formatter = logging.Formatter('%(asctime)s\t%(levelname)s\t%(message)s')
@@ -117,6 +117,7 @@ def verify_fits(file):
     warnings_logger.addHandler(console_handler)
     try:
         f = fits.open(file)
+        f[0].header.extend(header_list)
         f.verify()
         warnings_logger.warning('VerifyWarning: -----below are fixes that the server can make-----warnings.warn(line, VerifyWarning)')
         f.verify('fix')
@@ -131,9 +132,10 @@ def verify_fits(file):
     os.remove(key + '.log')
     return to_return
 
-def fix(file):
+def fix(file, header_list):
     key = str(uuid.uuid4())
     f = fits.open(file)
+    f[0].header.extend(header_list)
     # f.verify('fix')
     print(f[0].header)
     f.writeto(key + '.fits')

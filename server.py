@@ -87,18 +87,33 @@ def give_file(file):
 
 @app.route('/verify', methods=['POST'])
 def verify_fits():
+        headers_list = []
+        headers = request.values['headers'].split('&')
+        print(request.values['headers'])
+        for pair in headers:
+            try:
+                headers_list.append((pair.split('=')[0], pair.split('=')[1]))
+            except IndexError:
+                pass
         f = request.files['file']
         f.save(secure_filename(f.filename))
-        response = extract_metadata.verify_fits(f.filename)
+        response = extract_metadata.verify_fits(f.filename, headers_list)
         os.remove(f.filename)
         return response
 
 
 @app.route('/verify/fix', methods=['POST'])
 def fix_fits():
+    headers_list = []
+    headers = request.values['headers'].split('&')
+    for pair in headers:
+        try:
+            headers_list.append((pair.split('=')[0], pair.split('=')[1]))
+        except IndexError:
+            pass
     f = request.files['file']
     f.save(secure_filename(f.filename))
-    key = extract_metadata.fix(f.filename)
+    key = extract_metadata.fix(f.filename, headers_list)
 
     def yield_file():
         with open(key, 'rb') as file:
