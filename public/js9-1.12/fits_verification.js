@@ -13,7 +13,7 @@ $(document).ready(function(){
     headerValues = headerValues.slice(0, -1);
     formData.append('headers', headerValues);
     $.ajax({
-      url: fixing ? 'http://127.0.0.1:5000/verify/fix' : 'http://127.0.0.1:5000/verify',
+      url: fixing ? 'http://wwt-js9-server.herokuapp.com/verify/fix' : 'http://wwt-js9-server.herokuapp.com/verify',
       type: 'POST',
       data: formData,
       async: true,
