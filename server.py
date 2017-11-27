@@ -87,10 +87,8 @@ def give_file(file):
 
 @app.route('/verify', methods=['POST'])
 def verify_fits():
-        print('here')
         headers_list = []
         headers = request.values['headers'].split('&')
-        print(request.values['headers'])
         for pair in headers:
             try:
                 headers_list.append((pair.split('=')[0], pair.split('=')[1]))
