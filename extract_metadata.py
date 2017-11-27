@@ -6,6 +6,7 @@ import logging
 import warnings
 import astropy.units as u
 import numpy as np
+import ast
 
 from astropy.coordinates import SkyCoord
 from astropy.io import fits
@@ -117,7 +118,32 @@ def verify_fits(file, header_list):
     warnings_logger.addHandler(console_handler)
     try:
         f = fits.open(file)
-        f[0].header.extend(header_list)
+        # for hdu in f:
+        #     hdu.header['NAXIS1'] = 'test'
+            # print(hdu.header)
+        # print(f[0].header)
+        for item in header_list:
+            try:
+                item = (item[0], ast.literal_eval(item[1]))
+            except ValueError:
+                pass
+            except SyntaxError:
+                pass
+            if 'naxis' in item[0].lower():
+                warnings_logger.warning('VerifyWarning: -----Naxis values cannot be changed-----warnings.warn(line, VerifyWarning)')
+                continue
+            try:
+                warnings_logger.warning('VerifyWarning: -----The value for header {} will be changed from {} to {}-----warnings.warn(line, VerifyWarning)'.format(item[0], f[0].header[item[0]], item[1]))
+                f[0].header[item[0]] = item[1]
+            except KeyError:
+                warnings_logger.warning('VerifyWarning: -----New header {} will be added with value {}-----warnings.warn(line, VerifyWarning)'.format(item[0], item[1]))
+                f[0].header[item[0]] = item[1]
+            except:
+                warnings_logger.warning('VerifyWarning: -----Broken header {} will be replaced with {}-----warnings.warn(line, VerifyWarning)'.format(item[0], item[1]))
+                warnings_logger.removeHandler(console_handler)
+                print(f[0].header)
+                warnings_logger.addHandler(console_handler)
+                f[0].header[item[0]] = item[1]
         f.verify()
         warnings_logger.warning('VerifyWarning: -----below are fixes that the server can make-----warnings.warn(line, VerifyWarning)')
         f.verify('fix')
@@ -135,10 +161,47 @@ def verify_fits(file, header_list):
 def fix(file, header_list):
     key = str(uuid.uuid4())
     f = fits.open(file)
-    f[0].header.extend(header_list)
-    # f.verify('fix')
+    for item in header_list:
+        try:
+            item = (item[0], ast.literal_eval(item[1]))
+        except ValueError:
+            pass
+        except SyntaxError:
+            pass
+        if 'naxis' in item[0].lower():
+            continue
+        try:
+            f[0].header[item[0]]
+            f[0].header[item[0]] = item[1]
+        except KeyError:
+            f[0].header.append(item)
+        except:
+            print(f[0].header)
+            f[0].header[item[0]] = item[1]
     print(f[0].header)
     f.writeto(key + '.fits')
     f.close()
     return key + '.fits'
 
+
+# try:
+#         f = fits.open(file, 'update')
+#         # print(f[0].header)
+#         for item in header_list:
+#             try:
+#                 item = (item[0], ast.literal_eval(item[1]))
+#             except ValueError:
+#                 pass
+#             except SyntaxError:
+#                 pass
+#             print(item)
+#             f[0].header[item[0]] = item[1]
+#             print(f[0].header[item[0]])
+#         # f[0].header.extend(header_list)
+#         f.verify()
+#         warnings_logger.warning('VerifyWarning: -----below are fixes that the server can make-----warnings.warn(line, VerifyWarning)')
+#         f.verify('fix')
+#         # print(f[0].header)
+#         f.close()
+#     except OSError:
+#         pass
