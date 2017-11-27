@@ -14,6 +14,7 @@ $(document).ready(function(){
     formData.append('headers', headerValues);
     $.ajax({
       url: fixing ? 'http://wwt-js9-server.herokuapp.com/verify/fix' : 'http://wwt-js9-server.herokuapp.com/verify',
+      // url: fixing ? 'http://127.0.0.1:5000/verify/fix' : 'http://127.0.0.1:5000/verify'
       type: 'POST',
       data: formData,
       async: true,
