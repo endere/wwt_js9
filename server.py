@@ -41,7 +41,7 @@ def image_storage():
 
 @app.route('/image.fits', methods=['GET'])
 def image_return():
-    return send_file('casa.fits', mimetype='image/fits', cache_timeout=1)
+    return send_file('cvnidwabcut.fits', mimetype='image/fits', cache_timeout=1)
 
 @app.route('/<address>.png', methods=['GET'])
 def unique_image_return(address):

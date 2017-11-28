@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
   $('#theForm').on('submit', function(event){
+    console.log('here');
     event.preventDefault();
     var formData = new FormData();
     var filename = this.file.files[0].name;
@@ -29,8 +30,9 @@ $(document).ready(function(){
           res = res.split('warnings.warn(line, VerifyWarning)');
           warningText = ''
           for (var i = 0; i < res.length; i++){
-            warningText += res[i].split('VerifyWarning:')[1]
+            warningText += res[i].split('VerifyWarning:')[1] + '\n'
           }
+          warningText = warningText.substring(0, warningText.length - 9);
           $('body').append($('<textarea id="warnings"></textarea>').text(warningText).height(500).width(500))
         } else {
           var a = document.createElement('a');
@@ -44,9 +46,10 @@ $(document).ready(function(){
     });    
   });
   $('#addOrEdit').on('click', function(event){
-    $('#headers').append($(`<div><input placeholder = "new header" class="newHeader"></input><input placeholder = "header value" class="headerValue"></input><button class="removeHeader" type="button">remove header</button></div>`).height(80).width(150));
+    $('#headers').append($(`<div><input placeholder = "new header" class="newHeader"></input><input placeholder = "header value" class="headerValue"></input><button class="removeHeader" type="button">Cancel add/edit header</button></div>`).height(80).width(150));
     $($('#headers').children()[$('#headers').children().length - 1]).children('button').on('click', function(event){
       $(this).parent('div').remove();
     });
   });
 });
+
