@@ -32,7 +32,7 @@ $(document).ready(function(){
           for (var i = 0; i < res.length; i++){
             warningText += res[i].split('VerifyWarning:')[1] + '\n'
           }
-          warningText = warningText.substring(0, warningText.length - 9);
+          warningText = warningText.substring(0, warningText.length - 10);
           $('body').append($('<textarea id="warnings"></textarea>').text(warningText).height(500).width(500))
         } else {
           var a = document.createElement('a');
