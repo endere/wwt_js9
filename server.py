@@ -16,6 +16,10 @@ CORS(app)
 def image_storage():
     if request.method == 'POST':
         try:
+            # print(dir(request))
+            # print(request.data)
+            # print(request.values)
+            # print(request.headers)
             address = str(uuid.uuid4())
             split_data = request.data.split(b'&')
             url_data = base64.b64decode(split_data[0][26:])
