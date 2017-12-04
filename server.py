@@ -117,7 +117,6 @@ def fix_fits():
     f = request.files['file']
     f.save(secure_filename(f.filename))
     key = extract_metadata.fix(f.filename, headers_list)
-
     def yield_file():
         with open(key, 'rb') as file:
             yield from file

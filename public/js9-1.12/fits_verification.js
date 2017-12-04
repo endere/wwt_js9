@@ -1,7 +1,6 @@
 
 $(document).ready(function(){
   $('#theForm').on('submit', function(event){
-    console.log('here');
     event.preventDefault();
     var formData = new FormData();
     var filename = this.file.files[0].name;
