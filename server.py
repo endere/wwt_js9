@@ -104,7 +104,7 @@ def verify_fits():
         response = extract_metadata.verify_fits(f.filename, headers_list)
         os.remove(f.filename)
         print('returning!')
-        print(r)
+        print(response)
         return response
 
 
