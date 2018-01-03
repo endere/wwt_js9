@@ -1,6 +1,7 @@
 
 $(document).ready(function(){
   $('#theForm').on('submit', function(event){
+    console.log('here');
     event.preventDefault();
     var formData = new FormData();
     var filename = this.file.files[0].name;
@@ -24,6 +25,8 @@ $(document).ready(function(){
         responseType: 'blob'
       } : null,
       success: function(res){
+        console.log('success');
+        console.log(res);
         if(fixing == false){
           $('#warnings').remove();
           res = res.split('warnings.warn(line, VerifyWarning)');

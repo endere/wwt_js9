@@ -91,7 +91,6 @@ def give_file(file):
 
 @app.route('/verify', methods=['POST'])
 def verify_fits():
-        print('here')
         headers_list = []
         headers = request.values['headers'].split('&')
         for pair in headers:
@@ -103,8 +102,6 @@ def verify_fits():
         f.save(secure_filename(f.filename))
         response = extract_metadata.verify_fits(f.filename, headers_list)
         os.remove(f.filename)
-        print('returning!')
-        print(response)
         return response
 
 
