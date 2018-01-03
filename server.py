@@ -103,6 +103,8 @@ def verify_fits():
         f.save(secure_filename(f.filename))
         response = extract_metadata.verify_fits(f.filename, headers_list)
         os.remove(f.filename)
+        print('returning!')
+        print(r)
         return response
 
 
@@ -126,8 +128,6 @@ def fix_fits():
 
     r = app.response_class(yield_file(), mimetype='image/fits')
     r.headers.set('Content-Disposition', 'attachment', filename=f.filename)
-    print('returning!')
-    print(r)
     return r
 
 
