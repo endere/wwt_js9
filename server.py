@@ -126,6 +126,8 @@ def fix_fits():
 
     r = app.response_class(yield_file(), mimetype='image/fits')
     r.headers.set('Content-Disposition', 'attachment', filename=f.filename)
+    print('returning!')
+    print(r)
     return r
 
 
