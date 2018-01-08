@@ -40,7 +40,7 @@ def image_storage():
         except:
             return 'Invalid header.'
     else:
-        return redirect(url_for('home'))
+        return send_file('public/js9-1.12/WWT.html')
 
 
 @app.route('/image.fits', methods=['GET'])
