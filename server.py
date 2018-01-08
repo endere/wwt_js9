@@ -1,5 +1,5 @@
 #!/usr/bin/python
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, redirect, url_for
 from werkzeug import secure_filename
 import base64
 import extract_metadata
@@ -40,7 +40,7 @@ def image_storage():
         except:
             return 'Invalid header.'
     else:
-        return send_file('saved.png', mimetype='image/png')
+        return redirect(url_for('home'))
 
 
 @app.route('/image.fits', methods=['GET'])
