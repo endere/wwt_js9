@@ -45,7 +45,7 @@ $(document).ready(function(){
     });    
   });
   $('#addOrEdit').on('click', function(event){
-    $('#headers').append($(`<div><input placeholder = "new header" class="newHeader"></input><input placeholder = "header value" class="headerValue"></input><button style="margin-bottom:30px;" class="removeHeader" type="button">Cancel add/edit header</button></div>`).height(80).width(150);
+    $('#headers').append($(`<div><input placeholder = "new header" class="newHeader"></input><input placeholder = "header value" class="headerValue"></input><button style="margin-bottom:500px;" class="removeHeader" type="button">Cancel add/edit header</button></div>`).height(80).width(150);
     $($('#headers').children()[$('#headers').children().length - 1]).children('button').on('click', function(event){
       $(this).parent('div').remove();
     });
