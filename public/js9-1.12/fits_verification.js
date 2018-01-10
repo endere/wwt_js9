@@ -32,7 +32,7 @@ $(document).ready(function(){
             warningText += res[i].split('VerifyWarning:')[1] + '\n'
           }
           warningText = warningText.substring(0, warningText.length - 10);
-          $('body').append($('<textarea id="warnings"></textarea>').text(warningText).height(500).width(500))
+          $('#warningHolder').append($('<textarea id="warnings"></textarea>').text(warningText).height(500).width(500))
         } else {
           var a = document.createElement('a');
           var url = window.URL.createObjectURL(res);
