@@ -32,6 +32,9 @@ $(document).ready(function(){
             warningText += res[i].split('VerifyWarning:')[1] + '\n'
           }
           warningText = warningText.substring(0, warningText.length - 10);
+          if (warningText.substr(warningText.length - 46, warningText.length) == ' --below are fixes that the server can make--\n'){
+            warningText = warningText.substring(0, warningText.length - 46) + '--There is nothing the server can do to further to automatically fix your image! Custom headers can still be implemented.--'
+          }
           $('#warningHolder').append($('<textarea id="warnings"></textarea>').text(warningText).height(500).width(500))
         } else {
           var a = document.createElement('a');
