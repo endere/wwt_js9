@@ -142,7 +142,11 @@ def edit_wtml(dictionary, address):
             except IndexError:
                 new.write(line)
 
-
+@app.route('/verify/folder', methods=['POST'])
+def verify_folder():
+    f = request.files['folder']
+    print(f)
+    print('heree!!')
 
 if __name__ == '__main__':
     app.run()

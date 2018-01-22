@@ -53,5 +53,26 @@ $(document).ready(function(){
       $(this).parent('div').remove();
     });
   });
+$('#FolderForm').on('submit', function(event){
+  event.preventDefault();
+  var formData = new FormData();
+  formData.append("folder", this.folder.files);
+  formData.append("upload_file", true);
+  $.ajax({
+    url: 'http://wwt-js9-server.herokuapp.com/verify/folder',
+    type: 'POST',
+    data: formData,
+    async: true,
+    contentType: false,
+    processData: false,
+    timeout: 60000,
+    success: function(res){
+      console.log(res);
+    }
+    });
+  // for (var i = 0; i < this.folder.files.length; i++){
+  //   console.log(this.folder.files[i]);
+  // }
+  });
 });
 

@@ -17,6 +17,11 @@
          <div id  = 'headers'></div>
          <button id='addOrEdit' type="button">Add/edit header</button>
       </form>
+      <form id='FolderForm'>
+        Alternately, upload a folder of fits images and we will verify them en masse.
+        <input type="file" webkitdirectory mozdirectory name='folder' />
+        <input type = "submit" id='verifyFolder' value='verifyFolder' onclick="fixing=false"/>
+      </form>
       <div id='warningHolder'></div>
    </body>
 </html>
