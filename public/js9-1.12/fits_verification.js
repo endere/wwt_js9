@@ -61,7 +61,7 @@ $('#FolderForm').on('submit', function(event){
   $.ajax({
     url: 'http://wwt-js9-server.herokuapp.com/verify/folder',
     type: 'POST',
-    // data: formData,
+    data: formData,
     async: true,
     contentType: false,
     processData: false,

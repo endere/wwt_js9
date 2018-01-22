@@ -144,8 +144,8 @@ def edit_wtml(dictionary, address):
 
 @app.route('/verify/folder', methods=['POST'])
 def verify_folder():
-    # f = request.files['folder']
-    # print(f)
+    f = request.files['folder']
+    print(f)
     print('heree!!')
     return 'here'
 
