@@ -147,6 +147,7 @@ def verify_folder():
     # f = request.files['folder']
     # print(f)
     print('heree!!')
+    return 'here'
 
 if __name__ == '__main__':
     app.run()
