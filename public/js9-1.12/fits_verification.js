@@ -55,11 +55,18 @@ $(document).ready(function(){
   });
 $('#FolderForm').on('submit', function(event){
   event.preventDefault();
-  var formData = new FormData();
-  formData.append("folder", this.folder.files);
-  formData.append("upload_file", true);
-  $.ajax({
-    url: 'http://wwt-js9-server.herokuapp.com/verify/folder',
+  $('#warnings').remove();
+  valid = [];
+  invalid = [];
+  for (var i = 0; i < this.folder.files.length; i++){
+    var formData = new FormData();
+    var filename = this.folder.files[i].name;
+    formData.append("file", this.folder.files[i], filename);
+    formData.append("upload_file", true);
+    formData.append('headers', '');
+    console.log(filename);
+    $.ajax({
+    url: 'http://wwt-js9-server.herokuapp.com/verify',
     type: 'POST',
     data: formData,
     async: true,
@@ -67,12 +74,32 @@ $('#FolderForm').on('submit', function(event){
     processData: false,
     timeout: 60000,
     success: function(res){
-      console.log(res);
+      console.log(i);
+      res = res.split('warnings.warn(line, VerifyWarning)');
+      warningText = ''
+      for (var j = 0; j < res.length; j++){
+        warningText += res[i].split('VerifyWarning:')[1] + '\n'
+      }
+      warningText = warningText.substring(0, warningText.length - 10);
+      if (warningText.substr(warningText.length - 46, warningText.length) == ' --below are fixes that the server can make--\n'){
+        valid.push(filename);
+        console.log(valid, '++');
+      } else {
+        invalid.push(filename);
+        console.log(invalid, 'minus');
+      }
     }
     });
-  // for (var i = 0; i < this.folder.files.length; i++){
-  //   console.log(this.folder.files[i]);
-  // }
+  }
+  folderWarnings = 'These are the files that are valid.\n'
+  for (var i = 0; i < valid; i++){
+    folderWarnings += valid[i] + '\n'
+  }
+  folderWarnings += 'These files are not valid. Please use the single upload tool for more information and fixing.\n'
+  for (var i = 0; i < invalid; i++){
+    folderWarnings += invalid[i] + '\n'
+  }
+  $('#warningHolder').append($('<textarea id="warnings"></textarea>').text(folderWarnings).height(500).width(500))
   });
 });
 

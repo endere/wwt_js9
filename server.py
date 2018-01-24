@@ -102,7 +102,7 @@ def verify_fits():
         f.save(secure_filename(f.filename))
         response = extract_metadata.verify_fits(f.filename, headers_list)
         os.remove(f.filename)
-        return response
+        return f.filename + '+++++' + response
 
 
 @app.route('/verify/fix', methods=['POST'])
