@@ -26,6 +26,9 @@ $(document).ready(function(){
       success: function(res){
         if(fixing == false){
           $('#warnings').remove();
+          res = res.split('+++++');
+          filename = res[0];
+          res = res[1];
           res = res.split('warnings.warn(line, VerifyWarning)');
           warningText = ''
           for (var i = 0; i < res.length; i++){
@@ -58,13 +61,13 @@ $('#FolderForm').on('submit', function(event){
   $('#warnings').remove();
   valid = [];
   invalid = [];
+  total = this.folder.files.length;
   for (var i = 0; i < this.folder.files.length; i++){
     var formData = new FormData();
     var filename = this.folder.files[i].name;
     formData.append("file", this.folder.files[i], filename);
     formData.append("upload_file", true);
     formData.append('headers', '');
-    console.log(filename);
     $.ajax({
     url: 'http://wwt-js9-server.herokuapp.com/verify',
     type: 'POST',
@@ -74,32 +77,34 @@ $('#FolderForm').on('submit', function(event){
     processData: false,
     timeout: 60000,
     success: function(res){
-      console.log(i);
+      res = res.split('+++++');
+      filename = res[0];
+      res = res[1];
       res = res.split('warnings.warn(line, VerifyWarning)');
       warningText = ''
       for (var j = 0; j < res.length; j++){
-        warningText += res[i].split('VerifyWarning:')[1] + '\n'
+        warningText += res[j].split('VerifyWarning:')[1] + '\n'
       }
       warningText = warningText.substring(0, warningText.length - 10);
       if (warningText.substr(warningText.length - 46, warningText.length) == ' --below are fixes that the server can make--\n'){
         valid.push(filename);
-        console.log(valid, '++');
       } else {
         invalid.push(filename);
-        console.log(invalid, 'minus');
+      }
+      if (valid.length + invalid.length === total){
+        folderWarnings = 'These are the files that are valid.\n'
+        for (var k = 0; k < valid.length; k++){
+          folderWarnings += valid[k] + '\n'
+        }
+        folderWarnings += 'These files are not valid. Please use the single upload tool for more information and fixing.\n'
+        for (var k = 0; k < invalid.length; k++){
+          folderWarnings += invalid[k] + '\n'
+        }
+        $('#warningHolder').append($('<textarea id="warnings"></textarea>').text(folderWarnings).height(500).width(500))
       }
     }
     });
   }
-  folderWarnings = 'These are the files that are valid.\n'
-  for (var i = 0; i < valid; i++){
-    folderWarnings += valid[i] + '\n'
-  }
-  folderWarnings += 'These files are not valid. Please use the single upload tool for more information and fixing.\n'
-  for (var i = 0; i < invalid; i++){
-    folderWarnings += invalid[i] + '\n'
-  }
-  $('#warningHolder').append($('<textarea id="warnings"></textarea>').text(folderWarnings).height(500).width(500))
   });
 });
 
