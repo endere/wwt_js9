@@ -6,6 +6,7 @@ import extract_metadata
 import json
 import os
 import time
+import zipfile
 import uuid
 from flask_cors import CORS
 from threading import Thread
@@ -117,6 +118,7 @@ def fix_fits():
     f = request.files['file']
     f.save(secure_filename(f.filename))
     key = extract_metadata.fix(f.filename, headers_list)
+
     def yield_file():
         with open(key, 'rb') as file:
             yield from file
@@ -130,10 +132,18 @@ def fix_fits():
 
 @app.route('/verify/fix_folder', methods=['POST'])
 def fix_folder():
-    f = request
+    f = request.files['file']
+    key = str(uuid.uuid4())
+    f.save(secure_filename(key))
     print(f.files)
     print(dir(f))
     return 'success'
+
+
+    import zipfile
+zip_ref = zipfile.ZipFile(path_to_zip_file, 'r')
+zip_ref.extractall(directory_to_extract_to)
+zip_ref.close()
 
 def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
