@@ -141,9 +141,9 @@ def fix_folder():
 
 
     import zipfile
-zip_ref = zipfile.ZipFile(path_to_zip_file, 'r')
-zip_ref.extractall(directory_to_extract_to)
-zip_ref.close()
+# zip_ref = zipfile.ZipFile(path_to_zip_file, 'r')
+# zip_ref.extractall(directory_to_extract_to)
+# zip_ref.close()
 
 def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
