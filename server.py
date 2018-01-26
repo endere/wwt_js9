@@ -131,7 +131,7 @@ def fix_fits():
 @app.route('/verify/fix_folder', methods=['POST'])
 def fix_folder():
     f = request
-    print(f)
+    print(f.files)
     print(dir(f))
     return 'success'
 
