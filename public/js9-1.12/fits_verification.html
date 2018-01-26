@@ -4,6 +4,8 @@
   src="https://code.jquery.com/jquery-2.2.4.js"
   integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
   crossorigin="anonymous"></script>
+    <script type="text/javascript" src="jszip.min.js"></script>
+
     <script type="text/javascript" src="fits_verification.js"></script>
     <title>Fits verification</title>
 
@@ -20,7 +22,8 @@
       <form id='FolderForm'>
         Alternately, upload a folder of fits images and we will verify them en masse.
         <input type="file" webkitdirectory mozdirectory name='folder' />
-        <input type = "submit" id='verifyFolder' value='verifyFolder' onclick="fixing=false"/>
+        <input type = "submit" id='verifyFolder' value='Verify Folder' onclick="fixing=false"/>
+        <input type = "submit" id='fixfolder' value='Fix Folder' onclick="fixing=true" />
       </form>
       <div id='warningHolder'></div>
    </body>

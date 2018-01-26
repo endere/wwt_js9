@@ -58,13 +58,18 @@ $(document).ready(function(){
   });
 $('#FolderForm').on('submit', function(event){
   event.preventDefault();
+  if(fixing == false){
   $('#warnings').remove();
   valid = [];
   invalid = [];
   total = this.folder.files.length;
   for (var i = 0; i < this.folder.files.length; i++){
-    var formData = new FormData();
     var filename = this.folder.files[i].name;
+    if (filename.substring(filename.length - 4, filename.length).toLowerCase() != 'fits'){
+      total -= 1;
+      continue;
+    }
+    var formData = new FormData();
     formData.append("file", this.folder.files[i], filename);
     formData.append("upload_file", true);
     formData.append('headers', '');
@@ -105,6 +110,44 @@ $('#FolderForm').on('submit', function(event){
     }
     });
   }
+} else {
+  var zip = new JSZip();
+  for (var i = 0; i < this.folder.files.length; i++){
+    if (this.folder.files[i].name.substring(this.folder.files[i].name.length - 4, this.folder.files[i].name.length).toLowerCase() != 'fits'){
+      continue;
+    }
+    zip.file(this.folder.files[i].name, this.folder.files[i], {base64: true});
+  }
+  zip.generateAsync({type:"blob"})
+  .then(function(content) {
+    var formData = new FormData();
+    formData.append("zippedImages", this.folder.files[i], 'zip');
+    formData.append("upload_file", true);
+    formData.append('headers', '');
+    $.ajax({
+      url: 'http://wwt-js9-server.herokuapp.com/fix_folder',
+      type: 'POST',
+      data: formData,
+      async: true,
+      contentType: false,
+      processData: false,
+      timeout: 60000,
+      xhrFields: {responseType: 'blob'}
+      success: function(res){
+        var a = document.createElement('a');
+        var url = window.URL.createObjectURL(res);
+        a.href = url;
+        a.download = 'fixed_fits_images';
+        a.click();
+        window.URL.revokeObjectURL(url);
+        
+      }
+    });
+
+
+});
+}
   });
+
 });
 
