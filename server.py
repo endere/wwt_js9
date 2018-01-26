@@ -135,13 +135,13 @@ def fix_folder():
     f = request.files['file']
     key = str(uuid.uuid4())
     f.save(secure_filename(key))
+    zip_ref = zipfile.ZipFile(key, 'r')
+    zip_ref.extractall('/')
+    zip_ref.close()
     return 'success'
 
 
     import zipfile
-# zip_ref = zipfile.ZipFile(path_to_zip_file, 'r')
-# zip_ref.extractall(directory_to_extract_to)
-# zip_ref.close()
 
 def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
