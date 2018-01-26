@@ -135,8 +135,6 @@ def fix_folder():
     f = request.files['file']
     key = str(uuid.uuid4())
     f.save(secure_filename(key))
-    print(f.files)
-    print(dir(f))
     return 'success'
 
 
