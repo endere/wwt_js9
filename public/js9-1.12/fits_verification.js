@@ -121,25 +121,26 @@ $('#FolderForm').on('submit', function(event){
   zip.generateAsync({type:"blob"})
   .then(function(content) {
     var formData = new FormData();
-    formData.append("zippedImages", this.folder.files[i], 'zip');
+    formData.append("zippedImages", zip, 'zip');
     formData.append("upload_file", true);
     formData.append('headers', '');
     $.ajax({
-      url: 'http://wwt-js9-server.herokuapp.com/fix_folder',
+      url: 'http://wwt-js9-server.herokuapp.com/verify/fix_folder',
       type: 'POST',
-      data: formData,
+      // data: formData,
       async: true,
       contentType: false,
       processData: false,
       timeout: 60000,
-      xhrFields: {responseType: 'blob'}
+      // xhrFields: {responseType: 'blob'},
       success: function(res){
-        var a = document.createElement('a');
-        var url = window.URL.createObjectURL(res);
-        a.href = url;
-        a.download = 'fixed_fits_images';
-        a.click();
-        window.URL.revokeObjectURL(url);
+        // var a = document.createElement('a');
+        // var url = window.URL.createObjectURL(res);
+        // a.href = url;
+        // a.download = 'fixed_fits_images';
+        // a.click();
+        // window.URL.revokeObjectURL(url);
+        console.log('here');
         
       }
     });

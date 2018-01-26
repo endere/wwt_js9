@@ -130,8 +130,8 @@ def fix_fits():
 
 @app.route('/verify/fix_folder', methods=['POST'])
 def fix_folder():
-    f = request.files['zippedImages']
-    print(f)
+    # f = request.files['zippedImages']
+    # print(f)
     return 'success'
 
 def edit_wtml(dictionary, address):
