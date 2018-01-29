@@ -134,14 +134,29 @@ def fix_fits():
 def fix_folder():
     f = request.files['file']
     key = str(uuid.uuid4())
+    key2 = str(uuid.uuid4())
     f.save(secure_filename(key))
     zip_ref = zipfile.ZipFile(key, 'r')
-    zip_ref.extractall('/')
-    zip_ref.close()
-    return 'success'
+    fixed_zip_file = zipfile.ZipFile(key2, 'w')
+    for filename in zip_ref.namelist():
+        zip_ref.extract(filename)
+        fitskey = extract_metadata.fix(filename, [])
+        os.remove(filename)
+        os.rename(fitskey, filename)
+        fixed_zip_file.write(filename)
+        os.remove(filename)
+    os.remove(key)
+
+    def yield_file():
+        with open(key2, 'rb') as file:
+            yield from file
+        os.remove(key2)
+
+    r = app.response_class(yield_file(), mimetype='application/zip')
+    r.headers.set('Content-Disposition', 'attachment', filename='fixed_fits_images.zip')
+    return r
 
 
-    import zipfile
 
 def edit_wtml(dictionary, address):
     dictionary['CenterX'] = dictionary['RA']
