@@ -17,10 +17,6 @@ CORS(app)
 def image_storage():
     if request.method == 'POST':
         try:
-            # print(dir(request))
-            # print(request.data)
-            # print(request.values)
-            # print(request.headers)
             address = str(uuid.uuid4())
             split_data = request.data.split(b'&')
             url_data = base64.b64decode(split_data[0][26:])
@@ -100,10 +96,31 @@ def verify_fits():
             except IndexError:
                 pass
         f = request.files['file']
-        f.save(secure_filename(f.filename))
-        response = extract_metadata.verify_fits(f.filename, headers_list)
-        os.remove(f.filename)
+        key = str(uuid.uuid4())
+        f.save(secure_filename(key))
+        response = extract_metadata.verify_fits(key, headers_list)
+        os.remove(key)
         return f.filename + '+++++' + response
+
+
+@app.route('/verify/folder', methods=['POST'])
+def verify_folder():
+    f = request.files['file']
+    key = str(uuid.uuid4())
+    f.save(secure_filename(key))
+    zip_ref = zipfile.ZipFile(key, 'r')
+    valid = 'Valid files \n'
+    invalid = 'Invalid files \n'
+    for filename in zip_ref.namelist():
+        zip_ref.extract(filename)
+        raised_warnings = extract_metadata.mass_verify(filename)
+        if raised_warnings:
+            invalid += filename + '\n'
+        else:
+            valid += filename + '\n'
+        os.remove(filename)
+    os.remove(key)
+    return valid + '\n' + invalid
 
 
 @app.route('/verify/fix', methods=['POST'])
@@ -173,4 +190,4 @@ def edit_wtml(dictionary, address):
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)

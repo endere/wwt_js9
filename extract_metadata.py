@@ -153,6 +153,7 @@ def verify_fits(file, header_list):
     return to_return
 
 def fix(file, header_list):
+    """The print statement in this function is important. Astropy modified their print statement so it has an impact on saving the file."""
     key = str(uuid.uuid4())
     f = fits.open(file)
     f.verify('fix')
@@ -169,25 +170,9 @@ def fix(file, header_list):
     f.close()
     return key + '.fits'
 
+def mass_verify(file):
+    f = fits.open(file)
+    with warnings.catch_warnings(record=True) as w:
+        f.verify()
+        return len(w) > 0
 
-# try:
-#         f = fits.open(file, 'update')
-#         # print(f[0].header)
-#         for item in header_list:
-#             try:
-#                 item = (item[0], ast.literal_eval(item[1]))
-#             except ValueError:
-#                 pass
-#             except SyntaxError:
-#                 pass
-#             print(item)
-#             f[0].header[item[0]] = item[1]
-#             print(f[0].header[item[0]])
-#         # f[0].header.extend(header_list)
-#         f.verify()
-#         warnings_logger.warning('VerifyWarning: -----below are fixes that the server can make-----warnings.warn(line, VerifyWarning)')
-#         f.verify('fix')
-#         # print(f[0].header)
-#         f.close()
-#     except OSError:
-#         pass
