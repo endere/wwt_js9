@@ -1,0 +1,30 @@
+<html>
+<head>
+   <script
+  src="https://code.jquery.com/jquery-2.2.4.js"
+  integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+  crossorigin="anonymous"></script>
+    <script type="text/javascript" src="jszip.min.js"></script>
+
+    <script type="text/javascript" src="fits_verification.js"></script>
+    <title>Fits verification</title>
+
+</head>
+   <body>
+      <form id='theForm'>
+         <input type = "file" name = "file"/>
+         <input type = "submit" id='verify' value='verify' onclick="fixing=false"/>
+         <input type = "submit" id='fix' value='fix' onclick="fixing=true" />
+         <div id  = 'headers'></div>
+         <button id='addOrEdit' type="button">Add/edit header</button>
+      </form>
+      <form id='FolderForm'>
+        Alternately, upload a folder of fits images and we will verify them en masse.
+        <input type = "file" name = "zip"/>
+        <input type="file" webkitdirectory mozdirectory name='folder' />
+        <input type = "submit" id='verifyFolder' value='Verify Folder' onclick="fixing=false"/>
+        <input type = "submit" id='fixfolder' value='Fix Folder' onclick="fixing=true" />
+      </form>
+      <div id='warningHolder'></div>
+   </body>
+</html>

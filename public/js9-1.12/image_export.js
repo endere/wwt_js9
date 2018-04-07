@@ -1,11 +1,9 @@
 JS9.resizeOnLoad = JS9.Load;
 JS9.Load = function(url, opts){
-    JS9.resizeOnLoad(url, opts);
-    setTimeout(function(){
+    function resizeImage(){
         JS9.ResizeDisplay(JS9.GetImageData().width, JS9.GetImageData().height);
-        JS9.SetZoom(1);
-    }, 100);
-
+    }
+    JS9.resizeOnLoad(url, {onload: resizeImage});
 }
 
 JS9.Image.prototype.getExportURL = function(factor, width, height){

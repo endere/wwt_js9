@@ -1,9 +1,12 @@
 #!/usr/bin/env python
 import os
 import sys
-
+import uuid
+import logging
+import warnings
 import astropy.units as u
 import numpy as np
+import ast
 
 from astropy.coordinates import SkyCoord
 from astropy.io import fits
@@ -120,5 +123,79 @@ def get_coords_dict(head):
     
     reqd['Rotation'] = _calculate_rotation_angle('icrs', header) - 180
     reqd['BaseDegreesPerTile'] = scale
-    
     return reqd
+
+
+
+
+def verify_fits(file, header_list):
+    key = str(uuid.uuid4())
+    logging.captureWarnings(True)
+    formatter = logging.Formatter('%(asctime)s\t%(levelname)s\t%(message)s')
+    open(key + '.log', 'w')
+    console_handler = logging.FileHandler(key + '.log')
+    console_handler.setLevel(logging.DEBUG)
+    console_handler.setFormatter(formatter)
+    warnings_logger = logging.getLogger("py.warnings")
+    warnings_logger.addHandler(console_handler)
+    try:
+        f = fits.open(file)
+        for item in header_list:
+            try:
+                item = (item[0], ast.literal_eval(item[1]))
+            except:
+                pass
+            if 'naxis' in item[0].lower():
+                warnings_logger.warning('VerifyWarning: --Naxis values cannot be changed--warnings.warn(line, VerifyWarning)')
+                continue
+            try:
+                warnings_logger.warning('VerifyWarning: --The value for header {} will be changed from {} to {}--warnings.warn(line, VerifyWarning)'.format(item[0], f[0].header[item[0]], item[1]))
+                f[0].header[item[0]] = item[1]
+            except KeyError:
+                warnings_logger.warning('VerifyWarning: --New header {} will be added with value {}--warnings.warn(line, VerifyWarning)'.format(item[0], item[1]))
+                f[0].header[item[0]] = item[1]
+            except:
+                warnings_logger.warning('VerifyWarning: --Broken header {} will be replaced with {}--warnings.warn(line, VerifyWarning)'.format(item[0], item[1]))
+                warnings_logger.removeHandler(console_handler)
+                print(f[0].header)
+                warnings_logger.addHandler(console_handler)
+                f[0].header[item[0]] = item[1]
+        f.verify()
+        warnings_logger.warning('VerifyWarning: --below are fixes that the server can make--warnings.warn(line, VerifyWarning)')
+        f.verify('fix')
+        f.close()
+    except OSError:
+        pass
+    warnings.resetwarnings()
+    warnings_logger.removeHandler(console_handler)
+    to_return = ''
+    for line in open(key + '.log', 'r'):
+        to_return += line
+    os.remove(key + '.log')
+    return to_return
+
+def fix(file, header_list):
+    """The print statement in this function is important. Astropy modified their print statement so it has an impact on saving the file."""
+    key = str(uuid.uuid4())
+    f = fits.open(file)
+    f.verify('fix')
+    for item in header_list:
+        try:
+            item = (item[0], ast.literal_eval(item[1]))
+        except:
+            pass
+        if 'naxis' in item[0].lower():
+            continue
+        f[0].header[item[0]] = item[1]
+    print(f[0].header)
+    f.writeto(key + '.fits')
+    f.close()
+    return key + '.fits'
+
+def mass_verify(file):
+    f = fits.open(file)
+    with warnings.catch_warnings(record=True) as w:
+        f.verify()
+        return len(w) > 0
+
+
