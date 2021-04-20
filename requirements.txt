@@ -18,7 +18,7 @@ pathlib==1.0.1
 PIL==1.1.7
 Pillow==4.2.1
 pillowcase==2.0.0
-py==1.4.34
+py==1.10.0
 pyparsing==2.2.0
 pytest==3.2.2
 python-dateutil==2.6.1
